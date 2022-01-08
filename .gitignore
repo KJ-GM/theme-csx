@@ -64,9 +64,10 @@ android/keystores/debug.keystore
 lib/
 
 # other 
-.husky
-.circleci
-example
+.husky/
+.circleci/
+example/
+scripts/
 .editorconfig
 .yarnrc
 babel.config.js
