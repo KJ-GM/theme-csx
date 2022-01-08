@@ -74,3 +74,4 @@ babel.config.js
 CONTRIBUTING.md
 tsconfig.build.json
 .gitattributes
+yarn.lock
