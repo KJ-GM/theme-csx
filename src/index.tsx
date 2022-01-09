@@ -1,3 +1,13 @@
-export function multiply(a: number, b: number): Promise<number> {
-  return Promise.resolve(a * b);
-}
+// Import apply() helper
+import apply from './core/apply';
+
+// Import StyleSheet
+import StyleSheet from './core/styleSheet';
+
+// Import appearanceHook
+import { appearanceHook } from './core/appearance';
+
+/**
+ * Export helper method
+ */
+export { apply, StyleSheet, appearanceHook };
