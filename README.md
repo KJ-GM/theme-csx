@@ -72,6 +72,26 @@ const styles = StyleSheet.create({
 })
 
 ```
+## Configuration
+ 
+  
+> **StyleSheet:**
+
+- StyleSheet can be used as the normal styling way, but now you can have extra props to make it themeable if you wish. 
+
+> **TViewStyle:**
+
+- Has the following extra props: backgroundDark, borderDark 
+
+> **TTextStyle:**
+
+- Has the following extra props: colorDark, backgroundDark, borderDark 
+
+
+> **TImageStyle:**
+
+- Has the following extra props: tintColorDark, backgroundDark, borderDark 
+
 
 ## Contributing
 
