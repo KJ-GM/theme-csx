@@ -26,9 +26,15 @@ yarn add theme-csx
 ## Usage
 
 ```js
+
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+
+// Styles
 import { StyleSheet, appearanceHook, t} from "theme-csx";
+
+// Components 
+import { Text, View } from 'react-native';
+import { Button } from '@components/atoms';
 
 const DemoComponent = () => {
 
