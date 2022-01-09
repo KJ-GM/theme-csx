@@ -74,28 +74,38 @@ const styles = StyleSheet.create({
 
 ```
 ## Configuration
- 
+
+**Imports Usage:** 
   
 > **StyleSheet:**
 
 - StyleSheet can be used as the normal styling way, but now you can have extra props to make it themeable if you wish. 
 
-> **TViewStyle:**
+> **t() Function**
+
+- t() function should be used to apply themed styles only 
+
+> **appearanceHook**
+
+- appearanceHook is used to toggle and switch the theme - Supports: System | Light | Dark
+
+---
+
+**Themed Style types:** 
+
+
+> TViewStyle:
 
 - Has the following extra props: backgroundDark, borderDark 
 
-> **TTextStyle:**
+> TTextStyle:
 
 - Has the following extra props: colorDark, backgroundDark, borderDark 
 
 
-> **TImageStyle:**
+> TImageStyle:
 
 - Has the following extra props: tintColorDark, backgroundDark, borderDark 
-
-> **t() Function**
-
-- t() - function should be used to apply themed styles only 
 
 
 ## Contributing
