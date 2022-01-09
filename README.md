@@ -32,11 +32,11 @@ const DemoComponent = () => {
 // Theme state
 const [theme, setTheme] = useState(appearanceHook.activeTheme)
 
-// Theme toggle 
-const switchTheme = useCallback(() => {
+// Theme swticher 
+const switchTheme = () => {
    appearanceHook.switch(appearanceHook.activeTheme === 'dark' ? 'light' : 'dark')
    setTheme(theme === 'dark' ? 'light' : 'dark')
-}, [appearanceHook.activeTheme])
+}
 
 return (
    <View style={t(styles.THEMED_CONTAINER)}>
