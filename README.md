@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 })
 
 ```
-## Configuration
+## Description
 
 **Imports Usage:** 
   
