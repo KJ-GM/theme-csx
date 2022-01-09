@@ -1,5 +1,5 @@
 import type { stylesType } from 'src/types';
-import isThemedStyle from 'src/helper/themedStyle';
+import isThemedStyle from '../helper/themedStyle';
 import Instance from './instance';
 
 /**

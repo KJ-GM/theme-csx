@@ -1,13 +1,13 @@
 // Import apply() helper
-import apply from './core/apply';
+import t from './core/apply';
 
 // Import StyleSheet
 import StyleSheet from './core/styleSheet';
 
 // Import appearanceHook
-import { appearanceHook } from './core/appearance';
+import appearanceHook from './core/appearance';
 
 /**
- * Export helper method
+ * Export All
  */
-export { apply, StyleSheet, appearanceHook };
+export { t, StyleSheet, appearanceHook };

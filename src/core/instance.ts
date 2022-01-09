@@ -1,5 +1,5 @@
 import type { ColorValue } from 'react-native';
-import darkThemeProcessor from 'src/processor/darkThemeProcessor';
+import darkThemeProcessor from '../processor/darkThemeProcessor';
 
 /**
  * Instance class for each passed style

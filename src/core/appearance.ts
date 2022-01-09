@@ -20,6 +20,8 @@ export const AppearanceModel = types
     },
   }));
 
-export const appearanceHook = AppearanceModel.create({
+const appearanceHook = AppearanceModel.create({
   theme: 'system',
 });
+
+export default appearanceHook;

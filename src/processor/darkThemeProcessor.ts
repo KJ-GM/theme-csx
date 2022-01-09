@@ -1,5 +1,5 @@
 import { Appearance, ColorValue } from 'react-native';
-import { appearanceHook } from 'src/core/appearance';
+import appearanceHook from '../core/appearance';
 
 /**
  * Processor responsible for changing theme color
