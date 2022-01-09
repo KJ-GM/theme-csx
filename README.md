@@ -32,7 +32,7 @@ const DemoComponent = () => {
 // Theme state
 const [theme, setTheme] = useState(appearanceHook.activeTheme)
 
-// Theme swticher 
+// Theme switch
 const switchTheme = () => {
    appearanceHook.switch(appearanceHook.activeTheme === 'dark' ? 'light' : 'dark')
    setTheme(theme === 'dark' ? 'light' : 'dark')
