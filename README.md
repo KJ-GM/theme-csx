@@ -93,6 +93,10 @@ const styles = StyleSheet.create({
 
 - Has the following extra props: tintColorDark, backgroundDark, borderDark 
 
+> **t() Function**
+
+- t() - function should be used to apply themed styles only 
+
 
 ## Contributing
 
