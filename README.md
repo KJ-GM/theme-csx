@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
 
 > **appearanceHook**
 
-- appearanceHook is used to toggle and switch the theme - Supports: System | Light | Dark
+- appearanceHook is used to toggle and switch the theme: system, light, dark
 
 ---
 
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 
 > TImageStyle:
 
-- Has the following extra props: tintColorDark, backgroundDark, borderDark 
+- Has the following extra props: tintColorDark, backgroundDark, borderDark
 
 
 ## Contributing
