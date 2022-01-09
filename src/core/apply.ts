@@ -12,12 +12,10 @@ import Instance from './instance';
  */
 const t = (args: stylesType): object | null => {
   // Check if input is compatible
-  if (!isThemedStyle) {
-    if (__DEV__) {
-      console.error(
-        'Theming Error: Style object passed is not of type TTextStyle | TViewStyle | TImageStyle'
-      );
-    }
+  if (!isThemedStyle(args)) {
+    console.error(
+      'Theming Error: Style object passed is not of type TTextStyle | TViewStyle | TImageStyle'
+    );
     return null;
   }
   // New Style instance

@@ -1,7 +1,9 @@
+import type { stylesType } from 'src/types';
+
 /**
  * Check if theme style is of typeOf: TTextStyle | TViewStyle | TImageStyle only
  */
-const isThemedStyle = (style: object): boolean => {
+const isThemedStyle = (style: stylesType): boolean => {
   if (
     style.hasOwnProperty('colorDark') ||
     style.hasOwnProperty('backgroundDark') ||
