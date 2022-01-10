@@ -123,8 +123,4 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License
 
-MIT
-
-## Credit License
-
-https://github.com/OsmiCSX/osmicsx
+MIT | https://github.com/OsmiCSX/osmicsx
