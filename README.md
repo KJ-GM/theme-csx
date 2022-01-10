@@ -1,7 +1,7 @@
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/x3nsxwazndhbo79avwxi.png)
 # theme-csx
 
-A utility React Native theming framework for rapidly building themeable components.
+A React Native theming framework that makes it easy to create themeable components.
 
 # Features
 
