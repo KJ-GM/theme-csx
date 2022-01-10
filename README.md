@@ -123,4 +123,4 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License
 
-MIT | https://github.com/OsmiCSX/osmicsx
+Apache-2.0 License | https://github.com/OsmiCSX/osmicsx
