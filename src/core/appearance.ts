@@ -1,5 +1,5 @@
 import { types } from 'mobx-state-tree';
-import type { themeTypes } from 'src/types';
+import type { themeTypes } from '../types';
 
 /**
  * Appearance Hook Model.

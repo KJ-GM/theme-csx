@@ -1,4 +1,4 @@
-import type { NamedStyles } from 'src/types';
+import type { NamedStyles } from '../types';
 
 namespace StyleSheet {
   /**

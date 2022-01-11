@@ -27,8 +27,8 @@ export interface TImageStyle extends ImageStyle {
   borderDark?: ColorValue | undefined;
 }
 
-/** Combined Themed Styles  */
-export type stylesType =
+/** Input Themed Styles  */
+export type inputStyleTypes =
   | TTextStyle
   | TViewStyle
   | TImageStyle
@@ -38,7 +38,8 @@ export type stylesType =
 
 /** StyleSheet extended Types  */
 export type NamedStyles<T> = {
-  [P in keyof T]: stylesType;
+  [P in keyof T]: inputStyleTypes;
 };
+
 /** Theming Types  */
 export type themeTypes = 'system' | 'light' | 'dark';

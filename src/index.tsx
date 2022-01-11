@@ -1,5 +1,5 @@
-// Import apply() helper
-import t from './core/apply';
+// Import T Function
+import T from './core/theme';
 
 // Import StyleSheet
 import StyleSheet from './core/styleSheet';
@@ -14,7 +14,7 @@ import type { TImageStyle, TTextStyle, TViewStyle, themeTypes } from './types';
  * Export All
  */
 export {
-  t,
+  T,
   StyleSheet,
   appearanceHook,
   TImageStyle,
