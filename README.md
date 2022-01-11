@@ -30,7 +30,7 @@ yarn add theme-csx
 import { useState } from 'react';
 
 // Styles
-import { StyleSheet, appearanceHook, t} from "theme-csx";
+import { StyleSheet, T, appearanceHook} from "theme-csx";
 
 // Components 
 import { Text, View } from 'react-native';
@@ -48,11 +48,11 @@ const switchTheme = () => {
 }
 
 return (
-   <View style={t(styles.THEMED_CONTAINER)}>
+   <View style={T(styles.THEMED_CONTAINER)}>
    
       <Text style={styles.NORMAL_TEXT}>Hey, I am normal text</Text>
       
-      <Text style={t(styles.THEMED_TEXT)}>Hey, I am themed text</Text>
+      <Text style={T(styles.THEMED_TEXT)}>Hey, I am themed text</Text>
       
       <Button text={'Switch theme'} onPress={switchTheme} />
    
@@ -90,9 +90,9 @@ const styles = StyleSheet.create({
 
 - StyleSheet can be used as the normal styling way, but now you can have extra props to make it themeable if you wish. 
 
-> **t() Function**
+> **T() Function**
 
-- t() function should be used to apply themed styles only 
+- T() function should be used to apply themed styles only 
 
 > **appearanceHook**
 
