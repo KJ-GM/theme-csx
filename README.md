@@ -9,7 +9,7 @@ A React Native theming framework that makes it easy to create themeable componen
 - Behind the scenes, memoization has been optimized for maximum performance.
 - Can be implemented for Views + Texts + Images + Icons...
 - Light & Fast
-- Expo & react native
+- Expo & ReactNative
 - Typescript & JavaScript 
 
 ## Installation
