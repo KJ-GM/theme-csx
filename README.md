@@ -1,7 +1,7 @@
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/x3nsxwazndhbo79avwxi.png)
 # theme-csx
 
-A utility React Native theming framework for rapidly building themeable components.
+A React Native theming framework that makes it easy to create themeable components.
 
 # Features
 
@@ -27,7 +27,14 @@ yarn add theme-csx
 
 ```js
 
+import { useState } from 'react';
+
+// Styles
 import { StyleSheet, appearanceHook, t} from "theme-csx";
+
+// Components 
+import { Text, View } from 'react-native';
+import { Button } from '@components/atoms';
 
 const DemoComponent = () => {
 
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
     THEMED_CONTAINER: {
     flex: 1,
     backgroundColor: 'white',
-    backgroundDark: 'gray',
+    backgroundDark: 'gray', // backgroundDark porp was added to make it themeable
     alignItems: 'center',
     justifyContent: 'center',
    },
@@ -70,12 +77,12 @@ const styles = StyleSheet.create({
    fontWeight: 'bold',
    fontSize: 14,
    color: 'black',
-   colorDark: 'white'
+   colorDark: 'white'  // colorDark porp was added to make it themeable
    },
 })
 
 ```
-## Configuration
+## Get Started
 
 **Imports Usage:** 
   
@@ -116,4 +123,4 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License
 
-MIT
+Apache-2.0 License | https://github.com/OsmiCSX/osmicsx
