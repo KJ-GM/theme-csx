@@ -22,6 +22,22 @@ npm install theme-csx
 ```sh 
 yarn add theme-csx
 ```
+## Get Started
+
+### Three Steps:
+
+> Use the new StyleSheet.
+
+- Can be used in the usual styling format, but now you have additional props to make it themeable if desired.
+
+> **T() Function**
+
+- Apply your themed styles using the T() function wrapper.
+
+> **appearanceHook**
+
+- Use the appearanceHook to switch theme from anywhere in your app.
+
 
 ## Usage
 
@@ -78,25 +94,7 @@ const styles = StyleSheet.create({
 })
 
 ```
-## Get Started
-
-**Imports Usage:** 
-  
-> **StyleSheet:**
-
-- StyleSheet can be used as the normal styling way, but now you can have extra props to make it themeable if you wish. 
-
-> **T() Function**
-
-- T() function should be used to apply themed styles only 
-
-> **appearanceHook**
-
-- appearanceHook is used to toggle and switch the theme:  _system_, _light_, _dark_
-
----
-
-**Themed Style types:** 
+## Theme Types:
 
 
 > TViewStyle:
@@ -111,6 +109,12 @@ const styles = StyleSheet.create({
 > TImageStyle:
 
 - Has the following extra props: _tintColorDark_, _backgroundDark_, _borderDark_ 
+
+> appearanceHook.switch():
+
+- Has the following options: _system_, _light_, _dark_ 
+
+- Notice: To make the system preference work, make sure "userInterfaceStyle": "automatic" is added to app.json
 
 
 ## Contributing
