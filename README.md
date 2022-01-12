@@ -41,8 +41,6 @@ yarn add theme-csx
 
 ```js
 
-import { useState } from 'react';
-
 // Styles
 import { StyleSheet, T, appearanceHook} from "theme-csx";
 
