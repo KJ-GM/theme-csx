@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 
 - Has the following extra props: _tintColorDark_, _backgroundDark_, _borderDark_ 
 
-> appearanceHook.switch():
+> themeTypes:
 
 - Has the following options: _system_, _light_, _dark_ 
 
