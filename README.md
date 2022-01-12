@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 
 - Has the following options: _system_, _light_, _dark_ 
 
-- Notice: To make the system preference work, make sure "userInterfaceStyle": "automatic" is added to app.json
+- **Notice**: To make the system preference work, make sure "userInterfaceStyle": "automatic" is added to app.json
 
 
 ## Contributing
