@@ -26,7 +26,7 @@ yarn add theme-csx
 
 ### Three Steps:
 
-> Use the new StyleSheet.
+> **StyleSheet**
 
 - Can be used in the usual styling format, but now you have additional props to make style themeable.
 
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
 
 ```
 ## Theme Types:
-
 
 > TViewStyle:
 
