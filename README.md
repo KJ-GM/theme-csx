@@ -28,7 +28,7 @@ yarn add theme-csx
 
 > Use the new StyleSheet.
 
-- Can be used in the usual styling format, but now you have additional props to make it themeable if desired.
+- Can be used in the usual styling format, but now you have additional props to make style themeable.
 
 > **T() Function**
 
