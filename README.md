@@ -30,7 +30,7 @@ yarn add theme-csx
 
 > **T() Function**
 
-- Apply your themed styles using the T() function wrapper.
+- Apply **only** your themed styles using the T() function wrapper.
 
 > **appearanceHook**
 
