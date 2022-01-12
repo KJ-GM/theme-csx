@@ -22,13 +22,11 @@ npm install theme-csx
 ```sh 
 yarn add theme-csx
 ```
-## Get Started
-
-### Three Steps:
+## Get Started - _Three Steps:_
 
 > **StyleSheet**
 
-- Can be used in the usual styling format, but now you have additional props to make style themeable.
+- Is used in the usual styling format, but now you have additional props to make style themeable.
 
 > **T() Function**
 
