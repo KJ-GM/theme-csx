@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Appearance } from 'react-native';
 
 // Type
@@ -9,6 +9,8 @@ import isThemedStyle from '../helper/themedStyle';
 import appearanceHook from './appearance';
 // Theme Processor
 import themeProcessor from '../processor/themeProcessor';
+// Mobx State Tree
+import { onPatch } from 'mobx-state-tree';
 
 /**
  * @Processing Theme Function
@@ -25,21 +27,29 @@ const T = (style: inputStyleTypes): object => {
       'Invalid Theme Input: Is it a valid theme style type? Expected types: TTextStyle | TViewStyle | TImageStyle  '
     );
   }
-  // grab dark theme style
+
+  // Theme state - used for re-render purpose
+  const [theme, setTheme] = useState(appearanceHook.activeTheme);
+
+  // On appearanceHook change - re-render components
+  onPatch(appearanceHook, () => {
+    setTheme(appearanceHook.activeTheme);
+  });
+
+  // Grab dark theme style
   const darkStyle = useMemo(() => {
     return themeProcessor(style, 'dark');
   }, [style]);
 
-  // grab light theme style
+  // Grab light theme style
   const lightStyle = useMemo(() => {
     return themeProcessor(style, 'light');
   }, [style]);
 
-  // return final style obj
+  // Return final style obj
   if (
-    appearanceHook.activeTheme === 'dark' ||
-    (appearanceHook.activeTheme === 'system' &&
-      Appearance.getColorScheme() === 'dark')
+    theme === 'dark' ||
+    (theme === 'system' && Appearance.getColorScheme() === 'dark')
   ) {
     return darkStyle;
   } else {
