@@ -6,7 +6,7 @@
 
 A React Native theming framework that makes it easy to create themeable components.
 
-# Features
+# Features 🚀
 
 - Similar to standard react native styling, but with additional props that can be added to make it themeable.
 - Behind the scenes, memoization has been optimized for maximum performance.
