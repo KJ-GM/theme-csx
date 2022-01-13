@@ -25,7 +25,7 @@ npm install theme-csx
 ```sh 
 yarn add theme-csx
 ```
-## Get Started - _Three Steps:_
+## 📝 Get Started - _Three Steps:_
 
 > **StyleSheet**
 
@@ -97,22 +97,22 @@ const styles = StyleSheet.create({
 
 > TViewStyle:
 
-- Has the following extra props: _backgroundDark_, _borderDark_ 
+- Has the following extra props: `backgroundDark`, `borderDark` 
 
 > TTextStyle:
 
-- Has the following extra props: _colorDark_, _backgroundDark_, _borderDark_ 
+- Has the following extra props: `colorDark`, `backgroundDark`, `borderDark`
 
 
 > TImageStyle:
 
-- Has the following extra props: _tintColorDark_, _backgroundDark_, _borderDark_ 
+- Has the following extra props: `tintColorDark`, `backgroundDark`, `borderDark` 
 
 > appearanceHook.switch():
 
-- Has the following options: _system_, _light_, _dark_ 
+- Has the following options: `system`, `light`, `dark`
 
-- **Notice**: To make the system preference work, make sure "userInterfaceStyle": "automatic" is added to app.json
+- **Notice**: To make the system preference work, make sure `"userInterfaceStyle": "automatic"` is added to app.json
 
 
 ## Contributing
