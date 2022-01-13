@@ -2,7 +2,7 @@
 
 ![NPM Downloads](https://img.shields.io/npm/dw/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge)
 
-# theme-csx
+# theme-csx ✨
 
 A React Native theming framework that makes it easy to create themeable components.
 
@@ -40,7 +40,7 @@ yarn add theme-csx
 - Use the appearanceHook to switch theme from anywhere in your app.
 
 
-## Usage
+## Usage ❓
 
 ```js
 
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 })
 
 ```
-## Theme Types:
+## 🚦Theme Types:
 
 > TViewStyle:
 
