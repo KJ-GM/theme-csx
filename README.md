@@ -2,11 +2,14 @@
 
 ![NPM Downloads](https://img.shields.io/npm/dw/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge)
 
-> 🔴 **Notice:**  Fixing `Bugs` _+_ `Updates` are done on a regular basis, please keep the package up to date!
 
 # theme-csx ✨
 
-A React Native theming framework that makes it easy to create themeable components.
+> Recent Updates
+
+🔴 **Notice:**  Fixing `Bugs` _+_ `Updates` are done on a regular basis, please keep the package up to date!
+
+- All versions prior to 0.1.7 should be updated to the most recent version, as a bug with React Navigation has been fixed.
 
 # Features 🚀
 
