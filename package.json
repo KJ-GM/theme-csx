@@ -1,6 +1,6 @@
 {
   "name": "theme-csx",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "An utility React Native theming framework for rapidly building themeable components",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
