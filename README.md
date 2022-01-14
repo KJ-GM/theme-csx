@@ -118,11 +118,6 @@ const styles = StyleSheet.create({
 
 - **Notice**: To make the system preference work, make sure `"userInterfaceStyle": "automatic"` is added to app.json
 
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
 ## License
 
 Apache-2.0 License 
