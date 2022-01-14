@@ -5,9 +5,9 @@
 
 # theme-csx ✨
 
-> Recent Updates:  `Bugs` _-_ `Updates` _-_ `Enhancements`
+> Recent Updates:   `Bugs` _-_ `Updates` _-_ `Enhancements`
 
-🔴 All versions prior to `0.1.7` should be updated to the most recent version, as a bug with React Navigation has been fixed.
+🔴 All versions prior to `0.1.7` should be updated to the most recent version.
 
 # Features 🚀
 
