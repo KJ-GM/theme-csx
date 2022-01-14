@@ -7,7 +7,7 @@
 
 > Recent Updates
 
-🔴 **Notice:**  Fixing `Bugs` _+_ `Updates` are done on a regular basis, please keep the package up to date!
+🔴 **Notice:**  Fixing `Bugs` _+_ `Updates` _+_ `Enhancements` are done on a regular basis, please keep the package up to date!
 
 - All versions prior to `0.1.7` should be updated to the most recent version, as a bug with React Navigation has been fixed.
 
