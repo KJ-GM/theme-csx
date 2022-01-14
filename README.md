@@ -13,6 +13,7 @@
 
 - Keep an eye on the documentation.
 
+
 - All versions prior to `0.1.7` should be updated to the most recent version, as a bug with React Navigation has been fixed.
 
 # Features 🚀
