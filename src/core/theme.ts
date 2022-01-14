@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Appearance } from 'react-native';
 
 // Type
@@ -31,9 +31,23 @@ const T = (style: inputStyleTypes): object => {
   // Theme state - used for re-render purpose
   const [theme, setTheme] = useState(appearanceHook.activeTheme);
 
+  // Navigation page - unmount ref
+  const unmounted = useRef(false);
+
+  // Navigation page - mounting & unmounting registration
+  useEffect(() => {
+    unmounted.current = false;
+
+    return () => {
+      unmounted.current = true;
+    };
+  }, []);
+
   // On appearanceHook change - re-render components
   onPatch(appearanceHook, () => {
-    setTheme(appearanceHook.activeTheme);
+    if (!unmounted.current) {
+      setTheme(appearanceHook.activeTheme);
+    }
   });
 
   // Grab dark theme style
