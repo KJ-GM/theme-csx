@@ -1,9 +1,12 @@
 ![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/x3nsxwazndhbo79avwxi.png)
-# theme-csx
+
+![NPM Downloads](https://img.shields.io/npm/dw/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge)
+
+# theme-csx ✨
 
 A React Native theming framework that makes it easy to create themeable components.
 
-# Features
+# Features 🚀
 
 - Similar to standard react native styling, but with additional props that can be added to make it themeable.
 - Behind the scenes, memoization has been optimized for maximum performance.
@@ -22,12 +25,24 @@ npm install theme-csx
 ```sh 
 yarn add theme-csx
 ```
+## 📝 Get Started - _Three Steps:_
 
-## Usage
+> **StyleSheet**
+
+- Is similar to the usual styling format, but now you have additional props to make style themeable.
+
+> **T() Function**
+
+- Apply **only** your themed styles using the T() function wrapper.
+
+> **appearanceHook**
+
+- Use the appearanceHook to switch theme from anywhere in your app.
+
+
+## Usage ❓
 
 ```js
-
-import { useState } from 'react';
 
 // Styles
 import { StyleSheet, T, appearanceHook} from "theme-csx";
@@ -78,39 +93,26 @@ const styles = StyleSheet.create({
 })
 
 ```
-## Get Started
-
-**Imports Usage:** 
-  
-> **StyleSheet:**
-
-- StyleSheet can be used as the normal styling way, but now you can have extra props to make it themeable if you wish. 
-
-> **T() Function**
-
-- T() function should be used to apply themed styles only 
-
-> **appearanceHook**
-
-- appearanceHook is used to toggle and switch the theme:  _system_, _light_, _dark_
-
----
-
-**Themed Style types:** 
-
+## 🚦Theme Types:
 
 > TViewStyle:
 
-- Has the following extra props: _backgroundDark_, _borderDark_ 
+- Has the following extra props: `backgroundDark`, `borderDark` 
 
 > TTextStyle:
 
-- Has the following extra props: _colorDark_, _backgroundDark_, _borderDark_ 
+- Has the following extra props: `colorDark`, `backgroundDark`, `borderDark`
 
 
 > TImageStyle:
 
-- Has the following extra props: _tintColorDark_, _backgroundDark_, _borderDark_ 
+- Has the following extra props: `tintColorDark`, `backgroundDark`, `borderDark` 
+
+> appearanceHook.switch():
+
+- Has the following options: `system`, `light`, `dark`
+
+- **Notice**: To make the system preference work, make sure `"userInterfaceStyle": "automatic"` is added to app.json
 
 
 ## Contributing
