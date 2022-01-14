@@ -14,7 +14,6 @@
 # Features 🚀
 
 - Similar to standard react native styling, but with additional props that can be added to make it themeable.
-- Behind the scenes, memoization has been optimized for maximum performance.
 - Can be implemented for Views + Texts + Images + Icons...
 - Light & Fast
 - Expo & ReactNative
