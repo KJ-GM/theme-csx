@@ -6,7 +6,7 @@
 # theme-csx ✨
 A React Native theming framework that makes it easy to create themeable components.
 # Features 🚀
-
+🌟 **New**: Any changes to the phone _`appearance`_ preference while the app is running will be applied dynamically.
 - Similar to standard react native styling, but with additional props that can be added to make it themeable.
 - Can be implemented for Views + Texts + Images + Icons...
 - Light & Fast
