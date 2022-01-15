@@ -3,12 +3,13 @@
 ![NPM Downloads](https://img.shields.io/npm/dw/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge)
 
 # 🚀 Features 
-🌟 **New**: Any changes to the phone _`appearance`_ preference while the app is running will be applied dynamically.
 - Similar to standard react native styling, but with additional props that can be added to make it themeable.
 - Can be implemented for Views + Texts + Images + Icons...
 - Light & Fast
 - Expo & ReactNative
 - Typescript & JavaScript 
+
+🌟 **New**: Any changes to the phone _`appearance`_ preference while the app is running will be applied dynamically.
 
 ## ✅ Installation 
 
@@ -21,8 +22,6 @@ npm install theme-csx
 yarn add theme-csx
 ```
 ## 📝 Get Started
-
-### _Three Steps:_
 
 > **StyleSheet**
 
