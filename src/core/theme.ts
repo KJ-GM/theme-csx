@@ -72,3 +72,22 @@ const T = (style: inputStyleTypes): object => {
 };
 
 export default T;
+
+/**
+ * Theme Settings Change Event
+ *
+ * @event addChangeListener
+ *
+ * @action change theme dynamically
+ */
+let prevSettingsColor = Appearance.getColorScheme();
+Appearance.addChangeListener(() => {
+  if (
+    appearanceHook.activeTheme === 'system' &&
+    prevSettingsColor !== Appearance.getColorScheme()
+  ) {
+    appearanceHook.switch(Appearance.getColorScheme());
+    appearanceHook.switch('system');
+    prevSettingsColor = Appearance.getColorScheme();
+  }
+});

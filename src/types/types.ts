@@ -1,4 +1,5 @@
 import type {
+  ColorSchemeName,
   ColorValue,
   ImageStyle,
   TextStyle,
@@ -42,4 +43,4 @@ export type NamedStyles<T> = {
 };
 
 /** Theming Types  */
-export type themeTypes = 'system' | 'light' | 'dark';
+export type themeTypes = 'system' | ColorSchemeName;
