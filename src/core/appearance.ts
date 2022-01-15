@@ -16,7 +16,9 @@ export const AppearanceModel = types
   }))
   .actions((self) => ({
     switch(theme: themeTypes) {
-      self.theme = theme;
+      if (theme) {
+        self.theme = theme;
+      }
     },
   }));
 
