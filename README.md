@@ -23,7 +23,9 @@ npm install theme-csx
 ```sh 
 yarn add theme-csx
 ```
-## 📝 Get Started - _Three Steps:_
+## 📝 Get Started 
+
+### _Three Steps:_
 
 > **StyleSheet**
 
