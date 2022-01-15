@@ -3,8 +3,6 @@
 ![NPM Downloads](https://img.shields.io/npm/dw/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge)
 
 🔴 All versions prior to `0.1.7` should be updated to the most recent version.
-# theme-csx ✨
-A React Native theming framework that makes it easy to create themeable components.
 # Features 🚀
 🌟 **New**: Any changes to the phone _`appearance`_ preference while the app is running will be applied dynamically.
 - Similar to standard react native styling, but with additional props that can be added to make it themeable.
