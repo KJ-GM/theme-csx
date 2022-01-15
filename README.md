@@ -13,7 +13,7 @@ A React Native theming framework that makes it easy to create themeable componen
 - Expo & ReactNative
 - Typescript & JavaScript 
 
-## Installation ✅
+## ✅ Installation 
 
 ```sh
 npm install theme-csx
@@ -23,7 +23,7 @@ npm install theme-csx
 ```sh 
 yarn add theme-csx
 ```
-## Get Started 📝  
+## 📝 Get Started
 
 ### _Three Steps:_
 
