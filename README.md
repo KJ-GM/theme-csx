@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
 
 - Has the following options: `system`, `light`, `dark`
 
-- **🌓 Expo**: To make the system preference work, make sure `"userInterfaceStyle": "automatic"` is added to app.json
+**🌓 Expo**: To make the system preference work, make sure `"userInterfaceStyle": "automatic"` is added to app.json
 
 ## License
 
