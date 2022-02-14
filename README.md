@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     THEMED_CONTAINER: {
     flex: 1,
     backgroundColor: 'white',
-    backgroundDark: 'gray', // backgroundDark porp was added to make it themeable
+    backgroundDark: 'gray', // backgroundDark prop was added to make it themeable
     alignItems: 'center',
     justifyContent: 'center',
    },
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
    fontWeight: 'bold',
    fontSize: 14,
    color: 'black',
-   colorDark: 'white'  // colorDark porp was added to make it themeable
+   colorDark: 'white'  // colorDark prop was added to make it themeable
    },
 })
 
