@@ -1,5 +1,7 @@
+import dynamicColorIOS from '../helper/dynamicColor';
+
 // Function theme types
-type theme = 'light' | 'dark';
+type theme = 'light' | 'dark' | 'systemIOS';
 
 /**
  * @Processing Theme Processor
@@ -16,7 +18,7 @@ const themeProcessor = (style: any, type: theme): object => {
     style;
   if (type === 'light') {
     return other;
-  } else {
+  } else if (type === 'dark') {
     let outputStyle = other;
     if (backgroundDark) {
       outputStyle = {
@@ -42,6 +44,43 @@ const themeProcessor = (style: any, type: theme): object => {
       outputStyle = {
         ...outputStyle,
         tintColor: tintColorDark,
+      };
+    }
+    return outputStyle;
+  } else {
+    let outputStyle = other;
+    if (backgroundDark) {
+      const { backgroundColor } = style;
+      outputStyle = {
+        ...outputStyle,
+        backgroundColor: dynamicColorIOS(
+          backgroundColor,
+          backgroundDark,
+          'white'
+        ),
+      };
+    }
+    if (borderDark) {
+      const { borderColor } = style;
+      outputStyle = {
+        ...outputStyle,
+        borderColor: dynamicColorIOS(borderColor, borderDark, 'black'),
+      };
+    }
+
+    if (colorDark) {
+      const { color } = style;
+      outputStyle = {
+        ...outputStyle,
+        color: dynamicColorIOS(color, colorDark, 'black'),
+      };
+    }
+
+    if (tintColorDark) {
+      const { tintColor } = style;
+      outputStyle = {
+        ...outputStyle,
+        tintColor: dynamicColorIOS(tintColor, tintColorDark, 'black'),
       };
     }
     return outputStyle;
