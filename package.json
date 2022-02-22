@@ -38,13 +38,13 @@
     "theming",
     "javascript"
   ],
-  "repository": "https://github.com/KJA-CSX/theme-csx",
-  "author": "Karam Jammal <karamjammal6@gmail.com> (https://github.com/KJA-CSX)",
+  "repository": "https://github.com/KJ-GM/theme-csx.git ",
+  "author": "Karam Jammal <karamjammal6@gmail.com> (https://github.com/KJ-GM)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KJA-CSX/theme-csx/issues"
+    "url": "https://github.com/KJ-GM/theme-csx/issues"
   },
-  "homepage": "https://github.com/KJA-CSX/theme-csx#readme",
+  "homepage": "https://github.com/KJ-GM/theme-csx#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
