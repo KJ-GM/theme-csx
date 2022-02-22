@@ -36,7 +36,8 @@
 - Expo & React Native
 - Supports React Navigation
 
-🌟 **System**: changes to the phone _`appearance`_ preference while the app is running will be applied dynamically. - **IOS:** changes will be shown _`immediately`_ without the need to reopen the app.
+🌟 **System**: changes to the phone _`appearance`_ preference while the app is running will be applied dynamically. 
+- **IOS:** changes will be shown _`immediately`_ without the need to reopen the app.
 
 ## ✅ Installation
 
