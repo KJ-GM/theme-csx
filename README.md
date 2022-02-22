@@ -1,6 +1,5 @@
 ![image](https://user-images.githubusercontent.com/52489083/149637586-f0c3b5ce-6b99-431f-b821-7ca1e208073e.png)
 
-<<<<<<< HEAD
 <!-- this is a comment
 ![NPM Downloads](https://img.shields.io/npm/dy/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge)
 
@@ -31,11 +30,6 @@
 
 # 🚀 Features
 
-=======
-![NPM Downloads](https://img.shields.io/npm/dy/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge)
-
-# 🚀 Features 
->>>>>>> a279e764bf2aee469db20ecf3db1180c821ead31
 - Similar to standard react native styling, but with additional props that can be added to make it themeable.
 - Can be implemented for Views + Texts + Images + Icons...
 - Light & Fast
@@ -44,13 +38,7 @@
 
 🌟 **System**: changes to the phone _`appearance`_ preference while the app is running will be applied dynamically. - **IOS:** changes will be shown _`immediately`_ without the need to reopen the app.
 
-<<<<<<< HEAD
 ## ✅ Installation
-=======
-🌟 **New**: Any changes to the phone _`appearance`_ preference while the app is running will be applied dynamically.
-
-## ✅ Installation 
->>>>>>> a279e764bf2aee469db20ecf3db1180c821ead31
 
 ```sh
 npm install theme-csx
@@ -60,11 +48,8 @@ npm install theme-csx
 yarn add theme-csx
 ```
 
-<<<<<<< HEAD
 ## 📝 Get Started
 
-=======
->>>>>>> a279e764bf2aee469db20ecf3db1180c821ead31
 > **StyleSheet**
 
 - Is similar to the usual styling format, but now you have additional props to make style themeable.
@@ -119,7 +104,6 @@ const styles = StyleSheet.create({
     backgroundDark: 'gray', // backgroundDark prop was added to make it themeable
     alignItems: 'center',
     justifyContent: 'center',
-<<<<<<< HEAD
   },
   NORMAL_TEXT: {
     fontWeight: 'bold',
@@ -133,22 +117,6 @@ const styles = StyleSheet.create({
     colorDark: 'white', // colorDark prop was added to make it themeable
   },
 });
-=======
-   },
-   NORMAL_TEXT: {
-   fontWeight: 'bold',
-   fontSize: 14,
-   color: 'green',
-   },
-   THEMED_TEXT: {
-   fontWeight: 'bold',
-   fontSize: 14,
-   color: 'black',
-   colorDark: 'white'  // colorDark prop was added to make it themeable
-   },
-})
-
->>>>>>> a279e764bf2aee469db20ecf3db1180c821ead31
 ```
 
 ## 🚦Theme Types:
