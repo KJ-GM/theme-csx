@@ -22,7 +22,7 @@
    </thead>
    <tbody>
       <tr>
-         <td><img src="https://github.com/KJ-GM/tesykja/blob/master/RPReplay-Final1644961619.gif" alt="Showcase iOS" width="234" height="433"> </td>
+         <td><img src="https://github.com/KJ-GM/theme-csx/blob/master/RPReplay-Final1644961619.gif" alt="Showcase iOS" width="234" height="433"> </td>
                   <td><img src="https://user-images.githubusercontent.com/52489083/155139274-36543351-0585-46fd-ab81-1c254bf3020b.gif" alt="Showcase Android" width="234" height="439"></td>
       </tr>
    </tbody>
