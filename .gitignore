@@ -66,7 +66,6 @@ lib/
 # other 
 .husky/
 .circleci/
-example/
 scripts/
 .editorconfig
 .yarnrc

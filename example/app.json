@@ -1,0 +1,17 @@
+{
+  "name": "theme-csx-example",
+  "displayName": "ThemeCsx Example",
+  "expo": {
+    "name": "theme-csx-example",
+    "slug": "theme-csx-example",
+    "userInterfaceStyle": "automatic",
+    "description": "Example app for theme-csx",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": ["ios", "android", "web"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": ["**/*"]
+  }
+}
