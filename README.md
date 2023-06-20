@@ -318,3 +318,190 @@ namespace Question6
     }
 }
 ```
+
+## Questions -  1-5
+
+```js
+
+Class Car:
+
+using System;
+namespace Q1
+{
+	public class Car
+	{
+		public Car(int year, int mileage, int weight)
+		{
+            Year = year;
+            Mileage = mileage;
+            Weight = weight;
+        }
+
+        // Get and Set methods for the object Car:
+
+        private int year;
+        public int Year
+        {
+            get { return year; }
+            set { year = value; }
+        }
+
+        private int mileage;
+        public int Mileage
+        {
+            get { return mileage; }
+            set { mileage = value; }
+        }
+
+        private int weight;
+        public int Weight
+        {
+            get { return weight; }
+            set { weight = value; }
+        }
+
+    }
+}
+---------------------------------------------------
+
+Class Poruche:
+ 
+using System;
+namespace Q3
+{
+	public class Porsche:Car
+	{
+		public Porsche(int year, int mileage, int weight, string model, int maxSpeed):base(year, mileage, weight)
+		{
+            Model = model;
+            MaxSpeed = maxSpeed;
+        }
+
+        private string model;
+        public string Model
+        {
+            get { return model; }
+            set { model = value; }
+        }
+
+        private int maxSpeed;
+        public int MaxSpeed
+        {
+            get { return maxSpeed; }
+            set { maxSpeed = value; }
+        }
+    }
+}
+
+---------------------------------------------------
+
+Class OnlineShop:
+
+using System;
+namespace Q3
+{
+	public class OnlineShop
+	{
+        private string productName;
+        private decimal productPrice;
+        private int productQuantity;
+
+        public OnlineShop(string name, decimal price, int quantity)
+        {
+            productName = name;
+            productPrice = price;
+            productQuantity = quantity;
+        }
+
+        public decimal CalculateTotalPrice(int quantity)
+        {
+            return productPrice * quantity;
+        }
+
+        public void PrintProductInfo()
+        {
+            Console.WriteLine("Product Name: " + productName);
+            Console.WriteLine("Product Price: " + productPrice + "$");
+            Console.WriteLine($"Product Quantity: "+ productQuantity);
+            Console.WriteLine("Total Value: " + CalculateTotalPrice(productQuantity) + "$");
+
+        }
+
+    }
+}
+---------------------------------------------------
+
+Interface Students:
+
+using System;
+namespace Q4
+{
+	public interface Students
+	{
+         double CalculateMarks(double writingScore, double verbalScore);
+    }
+}
+
+---------------------------------------------------
+
+Abstract class Calculation:
+
+using System;
+namespace Q5
+{
+	public abstract class Calculation
+	{
+		public abstract int CalculateTotalValue();
+        public abstract int CalculateTotalPrice();
+    }
+}
+---------------------------------------------------
+ 
+Main Core class:
+
+using System;
+namespace Quiz1_KaramElgamal_201829_
+{
+    class Hello
+    {
+        static void Main(string[] args)
+        {
+            // Q1
+            Students Nick = new Students();
+            Nick.FirstName = "Karam";
+            Nick.LastName = "Elgamal";
+            Nick.UgCode = 201829;
+            Nick.MonthlyFee = 400;
+
+            Console.WriteLine("First name: " + Nick.FirstName);
+            Console.WriteLine("Last name: " + Nick.LastName);
+            Console.WriteLine("UG code: " + Nick.UgCode);
+            Console.WriteLine("Monthly fee: " + Nick.MonthlyFee + "$");
+
+            // Space
+            Console.WriteLine("-------------------------------");
+
+            // Q2
+
+            Porsche porsche = new Porsche(2012, 22000, 2300, "Macan", 320);
+
+            Console.WriteLine("Year: " + porsche.Year);
+            Console.WriteLine("Mileage: " + porsche.Mileage + " km");
+            Console.WriteLine("Weight: " + porsche.Weight + " kg");
+            Console.WriteLine("Model: " + porsche.Model);
+            Console.WriteLine("Max Speed: " + porsche.MaxSpeed + "mph");
+
+            // Space
+            Console.WriteLine("-------------------------------");
+
+            // Q3
+            OnlineShop phone = new OnlineShop("iPhone 4s", 1500, 5);
+            phone.PrintProductInfo();
+
+        }
+
+    }
+}
+
+```
+
