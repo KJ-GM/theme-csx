@@ -188,6 +188,8 @@ Do you want monthly payment graphic?
 Are you in social program?
 Are you from Ukraine?
 
+ // Logo bring from the web
+ 
 -------------------------------------------------------------------------------
  
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
