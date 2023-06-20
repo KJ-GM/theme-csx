@@ -142,3 +142,177 @@ const styles = StyleSheet.create({
 ## License
 
 Apache-2.0 License
+
+
+## C# -  Windows Form 
+
+```js
+
+Design: 
+
+// Lables:
+firstNameLabel
+lastNameLabel
+mobileNumberLabel
+passwordLabel
+usernameLabel
+
+// Texboxes 
+firstNameTextBox
+lastNameTextBox
+mobileNumberTextBox
+usernameTextBox
+passwordTextBox
+
+// ProgressBar
+progressBar
+
+// CheckBoox
+studentCodeCheckBox
+
+// Button
+registration
+
+// Interface:
+
+// Lables
+
+First Name
+Last Name
+Mobile Number
+Username
+Password
+
+Are you agree to the StudentCode?
+Do you want monthly payment graphic?
+Are you in social program?
+Are you from Ukraine?
+
+-------------------------------------------------------------------------------
+ 
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
+namespace Question6
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void registration_Click(object sender, EventArgs e)
+        {
+            // Retrieve user input values
+            string firstName = firstNameTextBox.Text;
+            string lastName = lastNameTextBox.Text;
+            string mobileNumber = mobileNumberTextBox.Text;
+            string username = usernameTextBox.Text;
+            string password = passwordTextBox.Text;
+            bool studentCodeChecked = studentCodeCheckBox.Checked;
+
+            // Validations:
+
+            // 1) Null + Symbol + Length Check
+            bool isValid = NSLCheck(firstName, lastName, mobileNumber, password, username, studentCodeChecked);
+
+            // Final Check
+            if (!isValid)
+            {
+                // Show Error Message 
+                MessageBox.Show("Insufficient information. Please fill in all fields properly and check mandatory checkboxes.", "Error");
+            }
+            else
+            {
+                // Move to next page
+                MessageBox.Show("Welcome to UG!", "Successful Registration");
+            }
+        }
+
+        // Helper functions
+
+        private bool NSLCheck(string firstName, string lastName, string mobileNumber, string password, string username, bool studentCodeChecked)
+        {
+            bool isValid = true;
+
+            if (int.TryParse(firstName, out int result1) || string.IsNullOrEmpty(firstName))
+            {
+                firstNameLabel.ForeColor = Color.Red;
+                isValid = false;
+            }
+            else
+            {
+                firstNameLabel.ForeColor = Color.Black;
+            }
+
+            if (int.TryParse(lastName, out int result2) || string.IsNullOrEmpty(lastName))
+            {
+                lastNameLabel.ForeColor = Color.Red;
+                isValid = false;
+            }
+            else
+            {
+                lastNameLabel.ForeColor = Color.Black;
+            }
+
+            if (!int.TryParse(mobileNumber, out int result3) || mobileNumber.Length < 9 || string.IsNullOrEmpty(mobileNumber))
+            {
+                mobileNumberLabel.ForeColor = Color.Red;
+                isValid = false;
+            }
+            else
+            {
+                mobileNumberLabel.ForeColor = Color.Black;
+            }
+
+            if (password.Length < 8 || string.IsNullOrEmpty(password))
+            {
+                passwordLabel.ForeColor = Color.Red;
+                isValid = false;
+            }
+            else
+            {
+                passwordLabel.ForeColor = Color.Black;
+            }
+
+            if (string.IsNullOrEmpty(username))
+            {
+                usernameLabel.ForeColor = Color.Red;
+                isValid = false;
+            }
+            else
+            {
+                usernameLabel.ForeColor = Color.Black;
+            }
+
+            if (!studentCodeChecked)
+            {
+                studentCodeCheckBox.ForeColor = Color.Red;
+                isValid = false;
+            }
+            else
+            {
+                studentCodeCheckBox.ForeColor = Color.Black;
+            }
+            return isValid;
+        }
+
+
+
+        private void passwordTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+            // Update the progress bar based on the length of the text in the TextBox
+            int characterCount = passwordTextBox.Text.Length;
+
+            if (characterCount > 8)
+            {
+                progressBar.Value = 100; // Set the progress bar to maximum value (100%)
+            }
+            else
+            {
+                progressBar.Value = characterCount * 100 / 8; // Calculate the progress percentage
+            }
+        }
+    }
+}
+```
