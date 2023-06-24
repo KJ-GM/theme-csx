@@ -560,5 +560,129 @@ exit
 // Use the planned R1 address 192.168.88.1 as the default gateway
 ip default-gateway 192.168.88.1
 
+exit 
+write
+
+----------------------------------
+	
+Router(1/3):
+
+en
+conf t
+
+// HostName
+hostname R1
+
+// Configure interfaces:
+
+// R1 -> S1 interface - Diff(R3)
+int g0/0 - Diff(R3)
+no shutdown
+exit
+
+// R1 -> S1 vlans interfaces - Diff(R3)
+
+int g0/0.15
+encapsulation dot1Q 15
+ip address 192.168.88.1 255.255.255.0 - Diff(R3)
+exit
+
+int g0/0.25 
+encapsulation dot1Q 25
+ip address 192.168.25.1 255.255.255.0 - Diff(R3)
+exit
+
+int g0/0.35 
+encapsulation dot1Q 35
+ip address 192.168.35.1 255.255.255.0 - Diff(R3)
+exit
+
+int g0/0.88 
+encapsulation dot1Q 88
+ip address 192.168.88.1 255.255.255.0 - Diff(R3)
+exit
+
+int g0/0.98 
+encapsulation dot1Q 98 native
+ip address 192.168.98.1 255.255.255.0 - Diff(R3)
+exit
+
+// R1 -> R2 vlans interfaces - Diff(R3)
+
+int s0/0/0
+ip address 192.168.5.1 255.255.255.252 - Diff(R3)
+no shutdown
+clock rate 2000000 - Only For specified interfaces
+exit;
+
+// Configure RIP dynamic routing - Diff(3)
+router rip
+version 2
+network 192.168.15.0
+network 192.168.25.0
+network 192.168.35.0
+network 192.168.88.0
+network 192.168.98.0
+network 192.168.5.0 - Diff(3)
+exit
+
+
+// Configure DHCP pool - Only R1
+
+ip dhcp pool POOL15
+network 192.168.15.0 255.255.255.0
+default-router  192.168.15.1
+dns-server 192.168.35.253
+exit
+
+ip dhcp pool POOL25
+network 192.168.25.0 255.255.255.0
+default-router  192.168.25.1
+dns-server 192.168.35.253
+
+
+exit 
+write
+
+----------------------------------
+
+Router(2):
+
+en
+conf t
+
+// HostName
+hostname R2
+
+// Configure interfaces:
+
+int s0/0/0
+ip address 192.168.5.2 255.255.255.252 
+no shutdown
+exit;
+
+int s0/0/1
+ip address 192.168.5.5 255.255.255.252 
+no shutdown
+clock rate 128000 - Only For specified interfaces
+exit;
+
+int s0/1/0
+ip address 209.165.201.66 255.255.255.0 
+no shutdown
+exit;
+
+// Configure RIP dynamic routing
+
+router rip
+version 2
+network 192.168.5.0
+network 192.168.5.4
+default-information originate 
+ip route 0.0.0.0.0.0.0.0 s0/1/0
+exit 
+
+exit 
+write
 ```
 
