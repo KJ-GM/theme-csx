@@ -505,3 +505,60 @@ namespace Quiz1_KaramElgamal_201829_
 
 ```
 
+## Network
+
+```js
+Swtich(1):
+
+en;
+conf t;
+
+// HostName
+hostname S1;
+
+// Vlan Names
+
+vlan 15;
+name Sales;
+exit;
+vlan 25;
+name Research;
+exit;
+vlan 35;
+name Servers;
+exit;
+vlan 88;
+name Mgt;
+exit;
+vlan 98;
+name Native;
+exit;
+
+// Allowed vlans, and native vlan
+int range g0/1-2;
+switchport mode trunk;
+switchport trunk native vlan 98;
+switchport trunk allowed vlan 15,25,35,88,98;
+exit;
+
+// Access switchports with vlans
+int f0/5; - Different by Switch;
+switchport mode access;
+switchport access vlan 15; - Different by Switch: (Pc1-15, Pc2-25, PcAdmin- 88, Servers-35)
+exit;
+
+// Shutdown unused switchports
+int range {f0/1-4, f0/6-24}; - Different by Switch;
+shutdown;
+exit;
+
+// The management interface vlan 88 with an ip address
+int v88;
+ip address {192.168.88.11 255.255.255.0};
+exit;
+
+// Use the planned R1 address 192.168.88.1 as the default gateway
+ip default-gateway 192.168.88.1;
+
+```
+
