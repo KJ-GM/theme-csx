@@ -542,19 +542,19 @@ switchport trunk allowed vlan 15,25,35,88,98;
 exit;
 
 // Access switchports with vlans
-int f0/5; - Different by Switch;
+int <f0/5>; - Different by Switch;
 switchport mode access;
-switchport access vlan 15; - Different by Switch: (Pc1-15, Pc2-25, PcAdmin- 88, Servers-35)
+switchport access vlan <15>; - Different by Switch: (Pc1-15, Pc2-25, PcAdmin- 88, Servers-35)
 exit;
 
 // Shutdown unused switchports
-int range {f0/1-4, f0/6-24}; - Different by Switch;
+int range <f0/1-4, f0/6-24>; - Different by Switch;
 shutdown;
 exit;
 
 // The management interface vlan 88 with an ip address
 int v88;
-ip address {192.168.88.11 255.255.255.0};
+ip address <192.168.88.11 255.255.255.0>; - Different by Switch: (Find IP in table Switches)
 exit;
 
 // Use the planned R1 address 192.168.88.1 as the default gateway
