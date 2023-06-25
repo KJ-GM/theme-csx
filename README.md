@@ -584,7 +584,7 @@ exit
 
 int g0/0.15
 encapsulation dot1Q 15
-ip address 192.168.88.1 255.255.255.0 - Diff(R3)
+ip address 192.168.15.1 255.255.255.0 - Diff(R3)
 exit
 
 int g0/0.25 
