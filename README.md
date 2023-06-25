@@ -679,8 +679,9 @@ version 2
 network 192.168.5.0
 network 192.168.5.4
 default-information originate 
-ip route 0.0.0.0.0.0.0.0 s0/1/0
 exit 
+ip route 0.0.0.0 0.0.0.0 s0/1/0
+
 
 exit 
 write
