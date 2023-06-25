@@ -582,34 +582,34 @@ exit
 
 // R1 -> S1 vlans interfaces - Diff(R3)
 
-int g0/0.15
+int g0/0.15 - Diff(R3)
 encapsulation dot1Q 15
 ip address 192.168.15.1 255.255.255.0 - Diff(R3)
 exit
 
-int g0/0.25 
+int g0/0.25 - Diff(R3)
 encapsulation dot1Q 25
 ip address 192.168.25.1 255.255.255.0 - Diff(R3)
 exit
 
-int g0/0.35 
+int g0/0.35 - Diff(R3)
 encapsulation dot1Q 35
 ip address 192.168.35.1 255.255.255.0 - Diff(R3)
 exit
 
-int g0/0.88 
+int g0/0.88 - Diff(R3)
 encapsulation dot1Q 88
 ip address 192.168.88.1 255.255.255.0 - Diff(R3)
 exit
 
-int g0/0.98 
+int g0/0.98 - Diff(R3)
 encapsulation dot1Q 98 native
 ip address 192.168.98.1 255.255.255.0 - Diff(R3)
 exit
 
 // R1 -> R2 vlans interfaces - Diff(R3)
 
-int s0/0/0
+int s0/0/0 - Diff(R3)
 ip address 192.168.5.1 255.255.255.252 - Diff(R3)
 no shutdown
 clock rate 2000000 - Only For specified interfaces
