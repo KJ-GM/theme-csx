@@ -9,7 +9,7 @@
 **`Android`**: theme chanes will show after app reopened!
  -->
 
-![NPM Downloads](https://img.shields.io/npm/dy/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Contributions - welcome](https://img.shields.io/badge/Contributions-welcome-blueviolet?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) 
+![NPM Downloads](https://img.shields.io/npm/dy/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Status - active](https://img.shields.io/badge/Status-active-blueviolet?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) 
 
 
 :last_quarter_moon: **Youtube Tutorial**: https://youtu.be/wW20AkwmGMk
