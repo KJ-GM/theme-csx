@@ -38,7 +38,10 @@
     "theming",
     "javascript"
   ],
-  "repository": "https://github.com/KJ-GM/theme-csx.git ",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KJ-GM/theme-csx.git"
+  },
   "author": "Karam Jammal <karamjammal6@gmail.com> (https://github.com/KJ-GM)",
   "license": "MIT",
   "bugs": {
