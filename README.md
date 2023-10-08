@@ -9,8 +9,7 @@
 **`Android`**: theme chanes will show after app reopened!
  -->
 
-![NPM Downloads](https://img.shields.io/npm/dy/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Status - active](https://img.shields.io/badge/Status-active-blueviolet?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) 
-
+![NPM Downloads](https://img.shields.io/npm/dy/theme-csx?logo=GIthub&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge) ![Status - active](https://img.shields.io/badge/Status-active-blueviolet?logo=GIthub&style=for-the-badge) ![GitHub](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=GIthub&style=for-the-badge)
 
 :last_quarter_moon: **Youtube Tutorial**: https://youtu.be/wW20AkwmGMk
 
@@ -86,9 +85,17 @@ import { Button } from '@components/atoms';
 const DemoComponent = () => {
   // Theme switch
   const switchTheme = () => {
-    appearanceHook.switch(
-      appearanceHook.activeTheme === 'dark' ? 'light' : 'dark'
-    );
+    switch (appearanceHook.activeTheme) {
+      case 'dark':
+        appearanceHook.switch('light');
+        break;
+      case 'light':
+        appearanceHook.switch('system');
+        break;
+      default:
+        appearanceHook.switch('dark');
+        break;
+    }
   };
 
   return (
@@ -143,6 +150,7 @@ const styles = StyleSheet.create({
 - Has the following options: `system`, `light`, `dark`
 
 ## Sponsors
+
 <a href="https://www.jetbrains.com/?from=Lighthouse-Badges">
   <img alt="Jetbrains Logo" src="https://raw.githubusercontent.com/emazzotta/lighthouse-badges/4ebebc4f41579e024ff72cfd20fb78a8d6f745b3/assets/img/jetbrains.svg" height="100">
 </a>
