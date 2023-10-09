@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Appearance, ColorValue, Platform } from 'react-native';
 
 // Type
-import type { inputStyleTypes } from '../types';
+import type { inputStyleTypes, themeObj } from '../types';
 // Appearance Hook
 import appearanceHook from './appearance';
 // Theme Processor
@@ -130,6 +130,30 @@ export const TV = (color: ColorValue, colorDark: ColorValue): any => {
       return color;
     }
   }
+};
+
+/**
+ * @Processing Theme object function
+ *
+ * @param arg theme object values
+ *
+ *
+ * @returns {arg object} theme values
+ *
+ */
+export const themeProvider = <
+  T extends {
+    [keys in keyof typeof themeObj]: Record<
+      string,
+      | string
+      | number
+      | Record<string, string | number | Record<string, string | number>>
+    >;
+  },
+>(
+  arg: T
+): T => {
+  return arg;
 };
 
 /**

@@ -1,5 +1,5 @@
 // Import T Function
-import T, { TV } from './core/theme';
+import T, { TV, themeProvider } from './core/theme';
 
 // Import StyleSheet
 import StyleSheet from './core/styleSheet';
@@ -8,7 +8,13 @@ import StyleSheet from './core/styleSheet';
 import appearanceHook from './core/appearance';
 
 // Import types
-import type { TImageStyle, TTextStyle, TViewStyle, themeTypes } from './types';
+import type {
+  TImageStyle,
+  TTextStyle,
+  TViewStyle,
+  themeTypes,
+  themeObj,
+} from './types';
 
 /**
  * Export All
@@ -16,10 +22,12 @@ import type { TImageStyle, TTextStyle, TViewStyle, themeTypes } from './types';
 export {
   T,
   TV,
+  themeProvider,
   StyleSheet,
   appearanceHook,
   TImageStyle,
   TTextStyle,
   TViewStyle,
   themeTypes,
+  themeObj,
 };

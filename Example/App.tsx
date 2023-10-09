@@ -10,6 +10,7 @@ import {
 import {appearanceHook, T, StyleSheet, TV} from 'theme-csx';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {theme} from './theme.config';
 
 // Stack Navigator - React Navigation
 const Stack = createNativeStackNavigator();
@@ -129,8 +130,8 @@ function DemoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    backgroundDark: '#121212',
+    backgroundColor: theme.colors.light.background,
+    backgroundDark: theme.colors.dark.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
   },
   normalText: {
     color: '#BB86FC',
-    fontSize: 16,
+    fontSize: theme.font.size.m,
     fontWeight: '700',
     textTransform: 'capitalize',
   },
