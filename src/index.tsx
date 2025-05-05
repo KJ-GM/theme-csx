@@ -6,7 +6,6 @@ import {
   useState,
   useCallback,
   type ReactNode,
-  useEffect,
 } from 'react';
 import {
   type ViewStyle,
@@ -17,7 +16,6 @@ import {
   Platform,
   type ColorValue,
 } from 'react-native';
-import { MMKV } from 'react-native-mmkv';
 
 // Types
 type EnsureMatchingKeys<
@@ -42,8 +40,6 @@ type ThemeMode = 'light' | 'dark' | 'system';
 
 let hasCreatedAppTheme = false;
 
-// Default MMKV instance
-const defaultMMKV = new MMKV();
 const DEFAULT_STORAGE_KEY = 'app-theme-mode';
 
 // iOS-only dynamic color calculation
@@ -68,9 +64,9 @@ const calculateDynamicIOSColors = <T extends RequiredThemeConfig>(
 
 export function createAppTheme<T extends RequiredThemeConfig>(
   config: T,
-  options?: {
-    storage?: boolean; // ✅ Use default MMKV if true, disable if false
-  }
+  options: {
+    storage?: boolean; // ✅ Use MMKV only if true
+  } = { storage: false } // Set default value here
 ) {
   if (__DEV__) {
     console.info(`
@@ -95,9 +91,9 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     hasCreatedAppTheme = true;
     validateThemeConfig(config);
 
-    if (options?.storage === false) {
-      console.warn(
-        '[createAppTheme] Storage is disabled. Theme mode will not persist.'
+    if (options?.storage === true) {
+      console.log(
+        '[createAppTheme] Storage enabled - theme mode will persist using MMKV'
       );
     }
   }
@@ -122,20 +118,42 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     fallbackTheme?: 'light' | 'dark';
   }) => {
     const systemColorScheme = useColorScheme();
-
     const isStorageEnabled = options?.storage !== false;
-    const storage = defaultMMKV;
-    const storageKey = DEFAULT_STORAGE_KEY;
 
-    // 🧹 Clean up previously stored theme mode if storage is disabled
-    useEffect(() => {
-      if (!isStorageEnabled) {
-        defaultMMKV.delete(storageKey);
+    const storageKey = DEFAULT_STORAGE_KEY;
+    let storage: any = null;
+
+    if (isStorageEnabled) {
+      try {
+        const { MMKV } = require('react-native-mmkv');
+        storage = new MMKV();
+      } catch (err) {
+        if (__DEV__) {
+          console.log(
+            '[theme-csx] MMKV not found – enable storage only if MMKV is installed.'
+          );
+          // Custom error message (formatted clearly)
+          const errorMessage = `
+        [theme-csx] MMKV Required but Not Installed
+        ==============================
+        You enabled theme persistence (storage: true), but 'react-native-mmkv' is missing.
+
+        Solutions:
+        1. Install MMKV: yarn add react-native-mmkv
+        2. Disable storage: createAppTheme(config, { storage: false })
+        
+        Note: Storage is disabled by default
+      `.replace(/^\s+/gm, ''); // Remove indentation
+
+          // OPTION 1: Show ONLY in redbox
+          throw new Error(errorMessage);
+        }
+        storage = null;
       }
-    }, [isStorageEnabled, storageKey]);
+    }
 
     const [mode, setModeState] = useState<ThemeMode>(() => {
-      if (!isStorageEnabled) {
+      if (!isStorageEnabled || !storage) {
         return defaultMode;
       }
       const stored = storage.getString(storageKey) as ThemeMode | undefined;
@@ -145,7 +163,7 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     const setMode = useCallback(
       (newMode: ThemeMode) => {
         setModeState(newMode);
-        if (isStorageEnabled) {
+        if (isStorageEnabled && storage) {
           storage.set(storageKey, newMode);
         }
       },
@@ -153,7 +171,7 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     );
 
     const resetThemeMode = useCallback(() => {
-      if (isStorageEnabled) {
+      if (isStorageEnabled && storage) {
         storage.delete(storageKey);
       }
       setModeState('system');

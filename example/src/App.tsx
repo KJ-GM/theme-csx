@@ -198,9 +198,7 @@ export const themeConfig = {
   },
 };
 
-const appTheme = createAppTheme(themeConfig, {
-  storage: false,
-});
+const appTheme = createAppTheme(themeConfig);
 
 export const {
   AppThemeProvider,
