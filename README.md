@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/52489083/149637586-f0c3b5ce-6b99-431f-b821-7ca1e208073e.png)
+
 # theme-csx
 
 Theming library react native
@@ -10,7 +12,6 @@ npm install theme-csx
 
 ## Usage
 
-
 ```js
 import { multiply } from 'theme-csx';
 
@@ -18,7 +19,6 @@ import { multiply } from 'theme-csx';
 
 const result = await multiply(3, 7);
 ```
-
 
 ## Contributing
 
