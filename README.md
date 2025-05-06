@@ -5,8 +5,7 @@
 ![Status - active](https://img.shields.io/badge/Status-active-blueviolet?logo=Github&style=for-the-badge)
 ![GitHub license](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=Github&style=for-the-badge)
 
-
-
+#
 <div align="center">
 
 <table style="border-collapse: collapse;">
@@ -17,9 +16,6 @@
     <td align="center" style="padding: 12px 24px; border-bottom: 1px solid #ddd;">
       <strong>Android Demo</strong>
     </td>
-    <td align="center" style="padding: 12px 24px; border-bottom: 1px solid #ddd;">
-      <strong>VS Code Styling</strong>
-    </td>
   </tr>
   <tr>
     <td align="center" style="padding: 16px;">
@@ -28,18 +24,10 @@
     <td align="center" style="padding: 16px;">
       <img src="https://github.com/user-attachments/assets/fb2468f5-5c37-4660-83b1-93621039f3fc" height="450" width="220"/>
     </td>
-    <td align="center" style="padding: 16px;">
-      <img src="https://github.com/user-attachments/assets/8ed3066e-46ca-4ff0-a659-f939c1883768" height="450" width="490"/>
-    </td>
   </tr>
 </table>
 
 </div>
-
-
-
-
-
 
 
 ## ✨ Features
@@ -47,7 +35,7 @@
 - ⚡️ Light / Dark / System theme support
 - 🍏 Dynamic iOS color adaptation
 - 💾 MMKV-based persistent theme storage
-- 🧠 Memoized themed styles with `createThemedStyles`
+- 🧠 Memoized themed styles with createThemedStyles
 - 🔐 Type-safe access to theme tokens (with autocomplete)
 - 🚀 Scalable for monorepos and multi-app setups
 - 🧩 Extendable (spacing, typography, shadows, etc.)
