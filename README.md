@@ -33,9 +33,9 @@ pnpm add theme-csx
 
 # 🚀 Quick Start
 
-### 1. Define your own theme 
+### 1. Define your own theme
 
-Create your own `theme` object. 
+Create your own `theme` object.
 
 > It **must** include a `colors.light` and `colors.dark` object. Everything else (e.g. spacing, typography, radius) is **optional and customizable**.
 
@@ -62,12 +62,14 @@ export const theme = {
 };
 ```
 
-### 2. Create your theme system 
+### 2. Create your theme system
 
- Use `createAppTheme()` to initialize your theming system.  
+Use `createAppTheme()` to initialize your theming system.
+
 > This should be called **only once** in your app to avoid unexpected behavior.
 
-You can enable persistent theme mode storage (optional) by setting `{ storage: true }`.  
+You can enable persistent theme mode storage (optional) by setting `{ storage: true }`.
+
 > ⚠️ Requires [`react-native-mmkv`](https://github.com/mrousavy/react-native-mmkv) if storage is enabled.
 
 ```ts
@@ -92,6 +94,7 @@ export const {
 ### 3. Wrap your app
 
 Wrap your app with `AppThemeProvider` and you are all set 🚀.
+
 ```ts
 // App.tsx
 import { AppThemeProvider } from '@theme';
@@ -139,7 +142,9 @@ const MyComponent = () => {
   return <Text style={styles.text}>Hello</Text>;
 };
 ```
+
 ### - Toggle theme mode
+
 ```ts
 import { useToggleThemeMode  } from '@theme';
 
@@ -150,21 +155,22 @@ const ToggleButton = () => {
 };
 
 ```
+
 ### 🔧 Other Utilities
 
 Once you initialize your theme system with `createAppTheme()`, you get access to the following utilities:
 
-| Utility              | Description                                                                 |
-|----------------------|-----------------------------------------------------------------------------|
-| `useTheme()`         | Access the current theme (`colors`, `colorMode`, and custom tokens).        |
-| `useThemeMode()`     | Get the current theme mode (`light`, `dark`, or `system`).                  |
-| `useSetThemeMode()`  | Change the theme mode programmatically.                                     |
-| `useResetThemeMode()`| Reset to system theme mode (and clear stored preference if `storage: true`).|
-| `useToggleThemeMode()` | Cycle through modes: `light → dark → system`.                            |
-| `createThemedStyles()`| Create memoized themed styles using your theme object.                     |
+| Utility                | Description                                                                  |
+| ---------------------- | ---------------------------------------------------------------------------- |
+| `useTheme()`           | Access the current theme (`colors`, `colorMode`, and custom tokens).         |
+| `useThemeMode()`       | Get the current theme mode (`light`, `dark`, or `system`).                   |
+| `useSetThemeMode()`    | Change the theme mode programmatically.                                      |
+| `useResetThemeMode()`  | Reset to system theme mode (and clear stored preference if `storage: true`). |
+| `useToggleThemeMode()` | Toggle strictly between `light` and `dark` modes.                            |
+| `useCycleThemeMode()`  | Cycle through modes: `light → dark → system → light`.                        |
+| `createThemedStyles()` | Create memoized themed styles using your theme object.                       |
 
 All of these must be used **within** your `AppThemeProvider` tree.
-
 
 # 🧩 Best Practices
 
@@ -177,7 +183,6 @@ All of these must be used **within** your `AppThemeProvider` tree.
 ✅ Use storage: true only if react-native-mmkv is installed
 
 🚫 Do not call createAppTheme() more than once per app
-
 
 ## 📜 License
 

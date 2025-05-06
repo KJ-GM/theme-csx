@@ -240,12 +240,21 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     return ctx;
   };
 
-  const useToggleThemeMode = () => {
+  const useCycleThemeMode = () => {
     const mode = useThemeMode();
     const set = useSetThemeMode();
     return useCallback(() => {
       const next: ThemeMode =
         mode === 'light' ? 'dark' : mode === 'dark' ? 'system' : 'light';
+      set(next);
+    }, [mode, set]);
+  };
+
+  const useToggleThemeMode = () => {
+    const mode = useThemeMode();
+    const set = useSetThemeMode();
+    return useCallback(() => {
+      const next: ThemeMode = mode === 'dark' ? 'light' : 'dark';
       set(next);
     }, [mode, set]);
   };
@@ -283,6 +292,7 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     useSetThemeMode,
     useResetThemeMode,
     useToggleThemeMode,
+    useCycleThemeMode,
     createThemedStyles,
     types: null as unknown as {
       Theme: Theme;
