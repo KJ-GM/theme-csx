@@ -15,6 +15,7 @@
   "files": [
     "src",
     "lib",
+    "scripts",
     "android",
     "ios",
     "cpp",
@@ -39,7 +40,8 @@
     "clean": "del-cli lib",
     "prepare": "bob build",
     "release": "release-it",
-    "postinstall": "node ./scripts/postinstall.js"
+    "postinstall": "node ./scripts/postinstall.js",
+    "postuninstall": "node ./scripts/goodbye.js"
   },
   "keywords": [
     "react-native",
