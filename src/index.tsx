@@ -15,6 +15,7 @@ import {
   DynamicColorIOS,
   Platform,
   type ColorValue,
+  StyleSheet,
 } from 'react-native';
 
 // Types
@@ -121,12 +122,11 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     const isStorageEnabled = options?.storage !== false;
 
     const storageKey = DEFAULT_STORAGE_KEY;
-    let storage: any = null;
-
-    if (isStorageEnabled) {
+    const storage = useMemo(() => {
+      if (!isStorageEnabled) return null;
       try {
         const { MMKV } = require('react-native-mmkv');
-        storage = new MMKV();
+        return new MMKV(); // ✅ Created once per component mount
       } catch (err) {
         if (__DEV__) {
           console.log(
@@ -148,9 +148,9 @@ export function createAppTheme<T extends RequiredThemeConfig>(
           // OPTION 1: Show ONLY in redbox
           throw new Error(errorMessage);
         }
-        storage = null;
+        return null;
       }
-    }
+    }, [isStorageEnabled]);
 
     const [mode, setModeState] = useState<ThemeMode>(() => {
       if (!isStorageEnabled || !storage) {
@@ -261,28 +261,55 @@ export function createAppTheme<T extends RequiredThemeConfig>(
 
   type RNStyle = ViewStyle | TextStyle | ImageStyle;
   type NamedStyles<T> = { [P in keyof T]: RNStyle };
-  type StyleCreator<T extends NamedStyles<T>> = (
+  // Style creator function(dynamic - based on theme)
+  type ThemedStyleCreator<T extends NamedStyles<T>> = (
     theme: Theme
   ) => NamedStyles<T>;
+  // Style creator function(static - based on config)
+  type StaticStyleCreator<T extends NamedStyles<T>> = (
+    theme: typeof config
+  ) => NamedStyles<T>;
 
+  // Themed styles
   const createThemedStyles = <T extends NamedStyles<T>>(
-    styleFn: StyleCreator<T>
+    styleFn: ThemedStyleCreator<T>
   ) => {
-    const stylesCache = new WeakMap<Theme, T>();
+    // Theme-to-StyleSheet cache
+    const styleSheetCache = new WeakMap<
+      Theme,
+      ReturnType<typeof StyleSheet.create>
+    >();
 
-    return function useThemedStyles(): T {
+    return function useThemedStyles(): ReturnType<typeof StyleSheet.create> {
       const theme = useTheme();
 
       return useMemo(() => {
-        if (stylesCache.has(theme)) {
-          return stylesCache.get(theme) as T;
+        // Check if we already created a StyleSheet for this theme
+        if (styleSheetCache.has(theme)) {
+          return styleSheetCache.get(theme) as ReturnType<
+            typeof StyleSheet.create
+          >;
         }
 
-        const styles = styleFn(theme) as T;
-        stylesCache.set(theme, styles);
-        return styles;
+        // Create raw styles based on the theme
+        const rawStyles = styleFn(theme);
+
+        // Create optimized StyleSheet from raw styles
+        const optimizedStyles = StyleSheet.create(rawStyles);
+
+        // Cache the StyleSheet for this theme
+        styleSheetCache.set(theme, optimizedStyles);
+
+        return optimizedStyles;
       }, [theme]);
     };
+  };
+
+  // Static styles - This is a static version of createThemedStyles
+  const createStaticStyles = <T extends NamedStyles<T>>(
+    styleFn: StaticStyleCreator<T>
+  ) => {
+    return StyleSheet.create(styleFn(config));
   };
 
   return {
@@ -294,6 +321,7 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     useToggleThemeMode,
     useCycleThemeMode,
     createThemedStyles,
+    createStaticStyles,
     types: null as unknown as {
       Theme: Theme;
       ThemeMode: ThemeMode;
