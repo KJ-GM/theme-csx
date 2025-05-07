@@ -146,12 +146,14 @@ const MyComponent = () => {
 };
 ```
 
-### - Themed styles (`Efficient`)
+### - Themed & Static Styles (Responsive vs Fixed)
 
 ```ts
-import { createThemedStyles } from '@theme';
+import { View, Text } from 'react-native';
+import { createThemedStyles, createStaticStyles } from '@theme';
 
-const useStyles = createThemedStyles((theme) => ({
+// 🎨 Styles that respond to theme mode (light/dark/system)
+const useThemedStyles = createThemedStyles((theme) => ({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
@@ -162,9 +164,28 @@ const useStyles = createThemedStyles((theme) => ({
   },
 }));
 
+// 🧱 Styles that use theme tokens but remain static across theme modes
+const staticStyles = createStaticStyles((theme) => ({
+  text: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: theme.colors.light.primary, // fixed value from light mode
+  },
+}));
+
 const MyComponent = () => {
-  const styles = useStyles();
-  return <Text style={styles.text}>Hello</Text>;
+  const styles = useThemedStyles();
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>
+        I react to theme mode changes
+      </Text>
+      <Text style={staticStyles.text}>
+        I stay the same across all modes
+      </Text>
+    </View>
+  );
 };
 ```
 
@@ -194,20 +215,26 @@ Once you initialize your theme system with `createAppTheme()`, you get access to
 | `useToggleThemeMode()` | Toggle strictly between `light` and `dark` modes.                            |
 | `useCycleThemeMode()`  | Cycle through modes: `light → dark → system → light`.                        |
 | `createThemedStyles()` | Create memoized themed styles using your theme object.                       |
+| `createStaticStyles()` | Create static styles using your theme object.(non-reactive)                  |
 
 All of these must be used **within** your `AppThemeProvider` tree.
 
 # 🧩 Best Practices
 
-✅ Always wrap your app in AppThemeProvider
+✅ Always wrap your app in `AppThemeProvider`
 
-✅ Use useTheme() for direct access to the theme
+✅ Use `useTheme()` for direct access to the theme
 
-✅ Use createThemedStyles() to keep styles performant and memoized
+✅ Use `createThemedStyles()` for theme-aware styles that adapt to light/dark mode
 
-✅ Use storage: true only if react-native-mmkv is installed
+✅ Use `createStaticStyles()` for styles that do not depend on the active theme
 
-🚫 Do not call createAppTheme() more than once per app
+💡 Define `createThemedStyles()` and `createStaticStyles()` **outside** of components for maximum efficiency & performance
+
+✅ Use `storage: true` only if `react-native-mmkv` is installed
+
+🚫 Do not call `createAppTheme()` more than once per app
+
 
 ## 📜 License
 
