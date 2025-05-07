@@ -110,7 +110,9 @@ export const {
   useSetThemeMode,
   useResetThemeMode,
   useToggleThemeMode,
+  useCycleThemeMode,
   createThemedStyles,
+  createStaticStyles 
 } = createAppTheme(theme, {
   storage: true, // Optional: disables persistence if omitted or set to false
 });
