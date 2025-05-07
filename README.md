@@ -225,13 +225,11 @@ All of these must be used **within** your `AppThemeProvider` tree.
 
 ✅ Use `useTheme()` for direct access to the theme
 
-✅ Use `createThemedStyles()` for theme-aware styles that adapt to light/dark mode
+✅ Use `createThemedStyles()` for most of your app — these styles respond to light/dark mode and adapt dynamically.
 
-✅ Use `createStaticStyles()` for styles that do not depend on the active theme
+✅ Use `createStaticStyles()` only when you need styles that remain fixed across all theme modes but still leverage theme tokens.
 
 💡 Define `createThemedStyles()` and `createStaticStyles()` **outside** of components for maximum efficiency & performance
-
-✅ Use `storage: true` only if `react-native-mmkv` is installed
 
 🚫 Do not call `createAppTheme()` more than once per app
 
