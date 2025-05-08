@@ -62,7 +62,10 @@ pnpm add theme-csx
 
 Create your own `theme` object.
 
-> It **must** include a `colors.light` and `colors.dark` object. Everything else (e.g. spacing, typography, radius) is **optional and customizable**.
+
+✅ colors.light is required and defines the base color palette.
+
+✅ colors.dark is optional, but must only override keys already defined in colors.light.
 
 ```ts
 // theme/theme.ts
@@ -74,8 +77,9 @@ export const theme = {
       text: '#111111',
     },
     dark: {
-      background: '#000000',
-      text: '#ffffff',
+      background: '#000000', // ✅ valid override
+      text: '#ffffff',       // ✅ valid override
+      // error if an unknown key like "accent" is added here!
     },
   },
   spacing: {
