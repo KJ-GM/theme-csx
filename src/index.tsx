@@ -19,36 +19,42 @@ import {
 } from 'react-native';
 
 // Types
-type EnsureMatchingKeys<
-  T extends Record<string, any>,
-  U extends Record<string, any>,
-> = keyof T extends keyof U ? (keyof U extends keyof T ? T : never) : never;
+type ThemeMode = 'light' | 'dark' | 'system';
 
-type RequiredThemeConfig<ColorKeys extends string = string> = {
+// Enhanced type definitions for better type safety
+type ColorSet<T extends string = string> = Record<T, string>;
+
+type RequiredThemeConfig<T extends string = string> = {
   colors: {
-    light: EnsureMatchingKeys<
-      Record<ColorKeys, string>,
-      Record<ColorKeys, string>
-    >;
-    dark: EnsureMatchingKeys<
-      Record<ColorKeys, string>,
-      Record<ColorKeys, string>
-    >;
+    light: ColorSet<T>;
+    dark?: Partial<ColorSet<T>>; // Optional and partial
   };
 };
 
-type ThemeMode = 'light' | 'dark' | 'system';
-
-let hasCreatedAppTheme = false;
+declare global {
+  var __theme_csx_hasCreatedAppTheme: boolean | undefined;
+}
 
 const DEFAULT_STORAGE_KEY = 'app-theme-mode';
 
-// iOS-only dynamic color calculation
-const calculateDynamicIOSColors = <T extends RequiredThemeConfig>(
-  config: T
+// Helper function to merge light and dark colors
+function createCompleteDarkColors<T extends string>(
+  lightColors: ColorSet<T>,
+  darkColors?: Partial<ColorSet<T>>
+): ColorSet<T> {
+  if (!darkColors) {
+    return lightColors;
+  }
+  return { ...lightColors, ...darkColors };
+}
+
+// Enhanced iOS-only dynamic color calculation using the helper function
+const calculateDynamicIOSColors = <T extends RequiredThemeConfig<any>>(
+  config: T,
+  completeDarkColors: ColorSet<any>
 ) => {
   const { colors } = config;
-  if (!colors.light || !colors.dark) {
+  if (!colors.light) {
     return null;
   }
 
@@ -57,7 +63,7 @@ const calculateDynamicIOSColors = <T extends RequiredThemeConfig>(
       key,
       DynamicColorIOS({
         light: colors.light[key] as ColorValue,
-        dark: colors.dark[key] as ColorValue,
+        dark: completeDarkColors[key] as ColorValue,
       }),
     ])
   );
@@ -70,27 +76,18 @@ export function createAppTheme<T extends RequiredThemeConfig>(
   } = { storage: false } // Set default value here
 ) {
   if (__DEV__) {
+    validateThemeConfig(config);
     console.info(`
 \x1b[32m🎨 [theme-csx] Theme system initialized\x1b[0m
 \x1b[36mDocs:\x1b[0m https://github.com/KJ-GM/theme-csx
     `);
-  }
 
-  type LightColors = T['colors']['light'];
-  type DarkColors = T['colors']['dark'];
-  type Theme = {
-    colorMode: 'light' | 'dark';
-    colors: LightColors | DarkColors;
-  } & Omit<T, 'colors'>;
-
-  if (__DEV__) {
-    if (hasCreatedAppTheme) {
-      console.warn(
-        '[createAppTheme] Warning: Called more than once. This may cause unexpected behavior.'
+    if (globalThis.__theme_csx_hasCreatedAppTheme) {
+      throw new Error(
+        '[createAppTheme] Called more than once. This is not allowed and may cause unexpected behavior.'
       );
     }
-    hasCreatedAppTheme = true;
-    validateThemeConfig(config);
+    globalThis.__theme_csx_hasCreatedAppTheme = true;
 
     if (options?.storage === true) {
       console.log(
@@ -99,8 +96,24 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     }
   }
 
+  // Type for the resolved theme colors - combines light colors with dark overrides
+  type ResolvedColors = T['colors']['light'];
+  type Theme = {
+    colorMode: 'light' | 'dark';
+    colors: ResolvedColors;
+  } & Omit<T, 'colors'>;
+
+  // Pre-compute complete dark theme by merging with light theme - only computed once
+  const completeDarkTheme = createCompleteDarkColors(
+    config.colors.light,
+    config.colors.dark
+  );
+
+  // Pre-compute iOS dynamic colors using the computed dark theme
   const dynamicIOSColors =
-    Platform.OS === 'ios' ? calculateDynamicIOSColors(config) : null;
+    Platform.OS === 'ios'
+      ? calculateDynamicIOSColors(config, completeDarkTheme)
+      : null;
 
   const ThemeContext = createContext<Theme | undefined>(undefined);
   const ModeContext = createContext<ThemeMode>('system');
@@ -186,11 +199,17 @@ export function createAppTheme<T extends RequiredThemeConfig>(
       return mode;
     }, [mode, systemColorScheme, fallbackTheme]);
 
+    // Simplified and optimized theme colors calculation
     const themeColors = useMemo(() => {
+      // Special case for iOS dynamic colors
       if (Platform.OS === 'ios' && mode === 'system' && dynamicIOSColors) {
         return dynamicIOSColors;
       }
-      return config.colors[resolvedMode];
+
+      // Use pre-computed complete dark theme for dark mode
+      return (
+        resolvedMode === 'dark' ? completeDarkTheme : config.colors.light
+      ) as ResolvedColors;
     }, [resolvedMode, mode]);
 
     const theme = useMemo(() => {
@@ -265,6 +284,7 @@ export function createAppTheme<T extends RequiredThemeConfig>(
   type ThemedStyleCreator<T extends NamedStyles<T>> = (
     theme: Theme
   ) => NamedStyles<T>;
+
   // Style creator function(static - based on config)
   type StaticStyleCreator<T extends NamedStyles<T>> = (
     theme: typeof config
@@ -329,23 +349,33 @@ export function createAppTheme<T extends RequiredThemeConfig>(
   };
 }
 
-// Validation helper
+// Updated validation helper for the new approach
 function validateThemeConfig<T extends RequiredThemeConfig>(config: T) {
-  if (!config.colors?.light || !config.colors?.dark) {
-    throw new Error('Theme config must include both light and dark colors');
+  if (!config.colors || typeof config.colors !== 'object') {
+    throw new Error("Theme object must include a 'colors' object.");
   }
 
-  const lightKeys = Object.keys(config.colors.light);
-  const darkKeys = Object.keys(config.colors.dark);
+  if (!config.colors?.light) {
+    throw new Error('Theme object must include light colors');
+  }
 
-  const missingInDark = lightKeys.filter((k) => !darkKeys.includes(k));
-  const missingInLight = darkKeys.filter((k) => !lightKeys.includes(k));
+  // Skip validation if dark theme is not provided
+  if (!config.colors.dark) {
+    return;
+  }
 
-  if (missingInDark.length || missingInLight.length) {
-    console.warn(
-      'Theme color mismatch:\n' +
-        `Missing in dark: ${missingInDark.join(', ') || 'none'}\n` +
-        `Missing in light: ${missingInLight.join(', ') || 'none'}`
-    );
+  // validate that dark colors (if present) only use keys from light
+  if (config.colors.dark) {
+    const lightKeys = Object.keys(config.colors.light);
+    const darkKeys = Object.keys(config.colors.dark);
+
+    const invalidDarkKeys = darkKeys.filter((key) => !lightKeys.includes(key));
+
+    if (invalidDarkKeys.length > 0) {
+      throw new Error(
+        `[theme-csx] Dark theme contains keys not present in light theme: ${invalidDarkKeys.join(', ')}\n` +
+          'These keys will be ignored. All dark theme colors should be overrides of light theme colors.'
+      );
+    }
   }
 }
