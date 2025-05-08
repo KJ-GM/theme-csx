@@ -67,6 +67,7 @@ Create your own `theme` object.
 
 ✅ colors.dark is optional, but must only override keys already defined in colors.light.
 
+🎨 Everything else is optional and fully customizable — feel free to add anything like spacing, typography, radius, etc.
 ```ts
 // theme/theme.ts
 
