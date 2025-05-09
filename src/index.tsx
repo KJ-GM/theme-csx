@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import {
   createContext,
   useContext,
@@ -31,10 +30,7 @@ type RequiredThemeConfig<T extends string = string> = {
   };
 };
 
-declare global {
-  var __theme_csx_hasCreatedAppTheme: boolean | undefined;
-}
-
+let isThemeInitialized = false;
 const DEFAULT_STORAGE_KEY = 'app-theme-mode';
 
 // Helper function to merge light and dark colors
@@ -75,23 +71,19 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     storage?: boolean; // ✅ Use MMKV only if true
   } = { storage: false } // Set default value here
 ) {
-  if (__DEV__) {
-    validateThemeConfig(config);
+  if (__DEV__ && !isThemeInitialized) {
     console.info(`
 \x1b[32m🎨 [theme-csx] Theme system initialized\x1b[0m
 \x1b[36mDocs:\x1b[0m https://github.com/KJ-GM/theme-csx
     `);
+    isThemeInitialized = true;
+  }
 
-    if (globalThis.__theme_csx_hasCreatedAppTheme) {
-      throw new Error(
-        '[createAppTheme] Called more than once. This is not allowed and may cause unexpected behavior.'
-      );
-    }
-    globalThis.__theme_csx_hasCreatedAppTheme = true;
-
+  if (__DEV__) {
+    validateThemeConfig(config);
     if (options?.storage === true) {
       console.log(
-        '[createAppTheme] Storage enabled - theme mode will persist using MMKV'
+        ' [theme-csx] Storage enabled - theme mode will persist using MMKV'
       );
     }
   }
@@ -238,7 +230,9 @@ export function createAppTheme<T extends RequiredThemeConfig>(
   const useTheme = () => {
     const theme = useContext(ThemeContext);
     if (!theme) {
-      throw new Error('useTheme must be used within AppThemeProvider');
+      throw new Error(
+        '[theme-csx] useTheme must be used within AppThemeProvider'
+      );
     }
     return theme;
   };
@@ -247,14 +241,18 @@ export function createAppTheme<T extends RequiredThemeConfig>(
   const useSetThemeMode = () => {
     const ctx = useContext(SetModeContext);
     if (!ctx) {
-      throw new Error('useSetThemeMode must be used inside AppThemeProvider');
+      throw new Error(
+        '[theme-csx] useSetThemeMode must be used inside AppThemeProvider'
+      );
     }
     return ctx;
   };
   const useResetThemeMode = () => {
     const ctx = useContext(ResetModeContext);
     if (!ctx) {
-      throw new Error('useResetThemeMode must be used inside AppThemeProvider');
+      throw new Error(
+        '[theme-csx] useResetThemeMode must be used inside AppThemeProvider'
+      );
     }
     return ctx;
   };
@@ -351,12 +349,18 @@ export function createAppTheme<T extends RequiredThemeConfig>(
 
 // Updated validation helper for the new approach
 function validateThemeConfig<T extends RequiredThemeConfig>(config: T) {
-  if (!config.colors || typeof config.colors !== 'object') {
-    throw new Error("Theme object must include a 'colors' object.");
+  if (
+    !config.colors ||
+    typeof config.colors !== 'object' ||
+    Array.isArray(config.colors)
+  ) {
+    throw new Error("[theme-csx] Theme config must include a 'colors' object.");
   }
 
   if (!config.colors?.light) {
-    throw new Error('Theme object must include light colors');
+    throw new Error(
+      "[theme-csx] Theme colors object must include 'light' colors"
+    );
   }
 
   // Skip validation if dark theme is not provided
