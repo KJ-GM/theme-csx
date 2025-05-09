@@ -1,4 +1,3 @@
-
 ![theme-csx](https://github.com/user-attachments/assets/70f49d5e-c573-431b-bf2e-49c41d1af01d)
 
 ![NPM Downloads](https://img.shields.io/npm/dy/theme-csx?logo=Github&style=for-the-badge)
@@ -7,6 +6,7 @@
 ![GitHub license](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=Github&style=for-the-badge)
 
 #
+
 <div align="center">
 
 <table style="border-collapse: collapse;">
@@ -29,7 +29,6 @@
 </table>
 
 </div>
-
 
 ## ✨ Features
 
@@ -63,12 +62,12 @@ pnpm add theme-csx
 
 Create your own `theme` object.
 
-
 ✅ colors.light is required and defines the base color palette.
 
 ✅ colors.dark is optional, but must only override keys already defined in colors.light.
 
 🎨 Everything else is optional and fully customizable — feel free to add anything like spacing, typography, radius, etc.
+
 ```ts
 // theme/theme.ts
 
@@ -80,7 +79,7 @@ export const theme = {
     },
     dark: {
       background: '#000000', // ✅ valid override
-      text: '#ffffff',       // ✅ valid override
+      text: '#ffffff', // ✅ valid override
       // error if an unknown key like "accent" is added here!
     },
   },
@@ -97,7 +96,8 @@ export const theme = {
 
 Use `createAppTheme()` to initialize your theming system.
 
-> This should be called **only once** in your app to avoid unexpected behavior.
+> 🚨 Critical: `createAppTheme()` must be called only once in your entire app.
+> Calling it multiple times can cause unexpected behavior & theme conflicts.
 
 You can enable persistent theme mode storage (optional) by setting `{ storage: true }`.
 
@@ -118,7 +118,7 @@ export const {
   useToggleThemeMode,
   useCycleThemeMode,
   createThemedStyles,
-  createStaticStyles 
+  createStaticStyles,
 } = createAppTheme(theme, {
   storage: true, // Optional: disables persistence if omitted or set to false
 });
@@ -240,7 +240,6 @@ All of these must be used **within** your `AppThemeProvider` tree.
 💡 Define `createThemedStyles()` and `createStaticStyles()` **outside** of components for maximum efficiency & performance
 
 🚫 Do not call `createAppTheme()` more than once per app
-
 
 ## 📜 License
 
