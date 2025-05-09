@@ -5,6 +5,8 @@
 ![Status - active](https://img.shields.io/badge/Status-active-blueviolet?logo=Github&style=for-the-badge)
 ![GitHub license](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=Github&style=for-the-badge)
 
+> ⭐️ If you find this library useful, [give it a star on GitHub](https://github.com/KJ-GM/theme-csx) — it helps a lot!  
+
 #
 
 <div align="center">
@@ -27,8 +29,9 @@
     </td>
   </tr>
 </table>
-
 </div>
+
+> 🧪 Check out the [Demo App Showcase](https://github.com/KJ-GM/Demo-App) to see `theme-csx` in action.
 
 ## ✨ Features
 
