@@ -229,8 +229,6 @@ All of these must be used **within** your `AppThemeProvider` tree.
 
 # 🧩 Best Practices
 
-✅ Always wrap your app in `AppThemeProvider`
-
 ✅ Use `useTheme()` for direct access to the theme
 
 ✅ Use `createThemedStyles()` for most of your app — these styles respond to light/dark mode and adapt dynamically.
@@ -238,9 +236,6 @@ All of these must be used **within** your `AppThemeProvider` tree.
 ✅ Use `createStaticStyles()` only when you need styles that remain fixed across all theme modes but still leverage theme tokens.
 
 💡 Define `createThemedStyles()` and `createStaticStyles()` **outside** of components for maximum efficiency & performance
-
-🚫 Do not call `createAppTheme()` more than once per app
-
 
 ## 📜 License
 
