@@ -30,12 +30,10 @@ export default defineConfig([
           useTabs: false,
         },
       ],
+      '@typescript-eslint/no-shadow': 'off',
     },
   },
   {
-    ignores: [
-      'node_modules/',
-      'lib/'
-    ],
+    ignores: ['node_modules/', 'lib/'],
   },
 ]);
