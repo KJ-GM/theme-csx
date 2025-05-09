@@ -1,5 +1,5 @@
 
-![theme-csx](https://github.com/user-attachments/assets/89ff9c20-67f9-4935-887f-bc24bf611035)
+![theme-csx](https://github.com/user-attachments/assets/70f49d5e-c573-431b-bf2e-49c41d1af01d)
 
 ![NPM Downloads](https://img.shields.io/npm/dy/theme-csx?logo=Github&style=for-the-badge)
 ![GitHub code size](https://img.shields.io/github/languages/code-size/KJA-Tsx/theme-csx?logo=Github&style=for-the-badge)
