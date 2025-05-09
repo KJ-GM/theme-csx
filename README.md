@@ -237,11 +237,9 @@ All of these must be used **within** your `AppThemeProvider` tree.
 
 💡 Define `createThemedStyles()` and `createStaticStyles()` **outside** of components for maximum efficiency & performance
 
-<<<<<<< HEAD
 🚫 Do not call `createAppTheme()` more than once per app
 
-=======
->>>>>>> 8cd0a010ab0404ce70274769a2ced604ec7b076c
+
 ## 📜 License
 
 MIT © KJ-GM
