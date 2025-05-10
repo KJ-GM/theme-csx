@@ -5,7 +5,7 @@
 ![Status - active](https://img.shields.io/badge/Status-active-blueviolet?logo=Github&style=for-the-badge)
 ![GitHub license](https://img.shields.io/github/license/KJA-Tsx/theme-csx?logo=Github&style=for-the-badge)
 
-> ⭐️ If you find this library useful, [give it a star on GitHub](https://github.com/KJ-GM/theme-csx) — it helps a lot!  
+> ⭐️ Enjoying the library? Support it with a [star on GitHub](https://github.com/KJ-GM/theme-csx) — thank you!
 
 #
 
@@ -122,9 +122,13 @@ export const {
   useCycleThemeMode,
   createThemedStyles,
   createStaticStyles,
+  types,
 } = createAppTheme(theme, {
   storage: true, // Optional: disables persistence if omitted or set to false
 });
+
+export type Theme = typeof types.Theme;
+export type ThemeMode = typeof types.ThemeMode;
 ```
 
 ### 3. Wrap your app
