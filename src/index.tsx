@@ -298,15 +298,13 @@ export function createAppTheme<T extends RequiredThemeConfig>(
       ReturnType<typeof StyleSheet.create>
     >();
 
-    return function useThemedStyles(): ReturnType<typeof StyleSheet.create> {
+    return function useThemedStyles(): T {
       const theme = useTheme();
 
       return useMemo(() => {
         // Check if we already created a StyleSheet for this theme
         if (styleSheetCache.has(theme)) {
-          return styleSheetCache.get(theme) as ReturnType<
-            typeof StyleSheet.create
-          >;
+          return styleSheetCache.get(theme) as T;
         }
 
         // Create raw styles based on the theme
@@ -318,7 +316,7 @@ export function createAppTheme<T extends RequiredThemeConfig>(
         // Cache the StyleSheet for this theme
         styleSheetCache.set(theme, optimizedStyles);
 
-        return optimizedStyles;
+        return optimizedStyles as T;
       }, [theme]);
     };
   };
