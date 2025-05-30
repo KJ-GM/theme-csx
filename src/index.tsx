@@ -276,20 +276,15 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     }, [mode, set]);
   };
 
+  // Full RN style union
   type RNStyle = ViewStyle | TextStyle | ImageStyle;
-  type NamedStyles<T> = { [P in keyof T]: RNStyle };
-  // Style creator function(dynamic - based on theme)
-  type ThemedStyleCreator<T extends NamedStyles<T>> = (
-    theme: Theme
-  ) => NamedStyles<T>;
 
-  // Style creator function(static - based on config)
-  type StaticStyleCreator<T extends NamedStyles<T>> = (
-    theme: typeof config
-  ) => NamedStyles<T>;
+  // StyleCreator
+  type ThemedStyleCreator<T> = (theme: Theme) => T;
+  type StaticStyleCreator<T> = (theme: typeof config) => T;
 
   // Themed styles
-  const createThemedStyles = <T extends NamedStyles<T>>(
+  const createThemedStyles = <T extends Record<string, RNStyle>>(
     styleFn: ThemedStyleCreator<T>
   ) => {
     // Theme-to-StyleSheet cache
@@ -322,7 +317,7 @@ export function createAppTheme<T extends RequiredThemeConfig>(
   };
 
   // Static styles - This is a static version of createThemedStyles
-  const createStaticStyles = <T extends NamedStyles<T>>(
+  const createStaticStyles = <T extends Record<string, RNStyle>>(
     styleFn: StaticStyleCreator<T>
   ) => {
     return StyleSheet.create(styleFn(config));
