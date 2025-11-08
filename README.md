@@ -122,9 +122,12 @@ export const {
   useCycleThemeMode,
   createThemedStyles,
   createStaticStyles,
+  resolveColor,           // NEW
   types,
 } = createAppTheme(theme, {
   storage: true, // Optional: disables persistence if omitted or set to false
+  storageKey: 'theme-mode',           // NEW: custom key name for storage
+  storageInstance: myMMKVInstance,   // NEW: optional external MMKV instance
 });
 
 export type Theme = typeof types.Theme;
@@ -231,6 +234,7 @@ Once you initialize your theme system with `createAppTheme()`, you get access to
 | `useCycleThemeMode()`  | Cycle through modes: `light → dark → system → light`.                        |
 | `createThemedStyles()` | Create memoized themed styles using your theme object.                       |
 | `createStaticStyles()` | Create static styles using your theme object.(non-reactive)                  |
+| `resolveColor()`       | NEW: Resolves a dynamic color object or string to the correct value for the current theme. Useful for external libraries or APIs (like Reanimated) that do not support iOS dynamic colors.                |
 
 All of these must be used **within** your `AppThemeProvider` tree.
 
