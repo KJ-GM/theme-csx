@@ -1,6 +1,6 @@
 {
   "name": "theme-csx",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Theming library react native",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
