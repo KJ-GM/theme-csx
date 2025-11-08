@@ -208,7 +208,7 @@ export const {
   useSetThemeMode,
   useToggleThemeMode,
   createThemedStyles,
-  resolveColor,
+  useResolveColor,
   types,
 } = appTheme;
 
@@ -256,7 +256,7 @@ const ThemeToggle = () => {
   const mode = useThemeMode();
   const styles = useStyles();
 
-  console.log(resolveColor(styles.container.backgroundColor));
+  console.log(useResolveColor(styles.container.backgroundColor));
 
   const toggleTheme = () => {
     if (mode === 'system') {

@@ -310,35 +310,18 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     return StyleSheet.create(styleFn(config));
   };
 
-  const resolveColor = (color: DynamicColorValue | string): string => {
-    try {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const { colorMode } = useTheme();
+  const useResolveColor = (color: DynamicColorValue | string): string => {
+    const { colorMode } = useTheme();
 
-      if (typeof color === 'string') return color;
+    if (typeof color === 'string') return color;
 
-      if (isDynamicColorObject(color)) {
-        return colorMode === 'dark'
-          ? (color.dynamic.dark as string)
-          : (color.dynamic.light as string);
-      }
-
-      return '#FFFFFF';
-    } catch (error: any) {
-      // Detect "called outside React" situations
-      const isReactRuntimeError =
-        error?.message?.includes('Invalid hook call') ||
-        error?.message?.includes('Cannot read property') ||
-        error?.message?.includes('runtime not ready');
-
-      if (isReactRuntimeError) {
-        throw new Error(
-          `[theme-csx] ❌ resolveColor() cannot be used outside a React function component.`
-        );
-      }
-      // Re-throw any other unexpected errors
-      throw error;
+    if (isDynamicColorObject(color)) {
+      return colorMode === 'dark'
+        ? (color.dynamic.dark as string)
+        : (color.dynamic.light as string);
     }
+
+    return '#FFFFFF';
   };
 
   return {
@@ -351,7 +334,7 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     useCycleThemeMode,
     createThemedStyles,
     createStaticStyles,
-    resolveColor,
+    useResolveColor,
     types: null as unknown as {
       Theme: Theme;
       ThemeMode: ThemeMode;
