@@ -1,4 +1,5 @@
 import { Text, View, TouchableOpacity } from 'react-native';
+
 import { createAppTheme } from 'theme-csx';
 
 export const themeConfig = {
@@ -198,7 +199,7 @@ export const themeConfig = {
   },
 };
 
-const appTheme = createAppTheme(themeConfig);
+const appTheme = createAppTheme(themeConfig, { storage: false });
 
 export const {
   AppThemeProvider,
@@ -207,12 +208,14 @@ export const {
   useSetThemeMode,
   useToggleThemeMode,
   createThemedStyles,
+  resolveColor,
   types,
 } = appTheme;
 
 export type Theme = typeof types.Theme;
 export type ThemeMode = typeof types.ThemeMode;
 
+// const storageTest = new MMKV();
 export default function App() {
   return (
     <AppThemeProvider>
@@ -238,6 +241,7 @@ export const useStyles = createThemedStyles((theme) => ({
 
 function Test() {
   const styles = useStyles();
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>SettingsScreen</Text>
@@ -251,6 +255,8 @@ const ThemeToggle = () => {
   const setThemeMode = useSetThemeMode();
   const mode = useThemeMode();
   const styles = useStyles();
+
+  console.log(resolveColor(styles.container.backgroundColor));
 
   const toggleTheme = () => {
     if (mode === 'system') {
@@ -269,4 +275,5 @@ const ThemeToggle = () => {
   );
 };
 
+// resolveColor('##fff');
 // Test

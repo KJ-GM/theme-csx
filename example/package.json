@@ -15,7 +15,8 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.2",
-    "react-native-mmkv": "^3.2.0",
+    "react-native-mmkv": "^4.0.0",
+    "react-native-nitro-modules": "^0.31.4",
     "react-native-web": "~0.20.0"
   },
   "devDependencies": {

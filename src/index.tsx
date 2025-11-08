@@ -6,69 +6,38 @@ import {
   useCallback,
   type ReactNode,
 } from 'react';
+
 import {
   type ViewStyle,
   type TextStyle,
   type ImageStyle,
   useColorScheme,
-  DynamicColorIOS,
   Platform,
-  type ColorValue,
   StyleSheet,
 } from 'react-native';
 
-// Types
-type ThemeMode = 'light' | 'dark' | 'system';
+import {
+  calculateDynamicIOSColors,
+  createCompleteDarkColors,
+  isDynamicColorObject,
+  validateThemeConfig,
+} from './helpers';
 
-// Enhanced type definitions for better type safety
-type ColorSet<T extends string = string> = Record<T, string>;
-
-type RequiredThemeConfig<T extends string = string> = {
-  colors: {
-    light: ColorSet<T>;
-    dark?: Partial<ColorSet<T>>; // Optional and partial
-  };
-};
+import type {
+  DynamicColorValue,
+  RequiredThemeConfig,
+  ThemeMode,
+} from './types';
 
 let isThemeInitialized = false;
 const DEFAULT_STORAGE_KEY = 'app-theme-mode';
-
-// Helper function to merge light and dark colors
-function createCompleteDarkColors<T extends string>(
-  lightColors: ColorSet<T>,
-  darkColors?: Partial<ColorSet<T>>
-): ColorSet<T> {
-  if (!darkColors) {
-    return lightColors;
-  }
-  return { ...lightColors, ...darkColors };
-}
-
-// Enhanced iOS-only dynamic color calculation using the helper function
-const calculateDynamicIOSColors = <T extends RequiredThemeConfig<any>>(
-  config: T,
-  completeDarkColors: ColorSet<any>
-) => {
-  const { colors } = config;
-  if (!colors.light) {
-    return null;
-  }
-
-  return Object.fromEntries(
-    Object.keys(colors.light).map((key) => [
-      key,
-      DynamicColorIOS({
-        light: colors.light[key] as ColorValue,
-        dark: completeDarkColors[key] as ColorValue,
-      }),
-    ])
-  );
-};
 
 export function createAppTheme<T extends RequiredThemeConfig>(
   config: T,
   options: {
     storage?: boolean; // ✅ Use MMKV only if true
+    storageInstance?: any; // optional user-provided MMKV instance
+    storageKey?: string; // optional custom key for theme mode
   } = { storage: false } // Set default value here
 ) {
   if (__DEV__ && !isThemeInitialized) {
@@ -125,33 +94,47 @@ export function createAppTheme<T extends RequiredThemeConfig>(
   }) => {
     const systemColorScheme = useColorScheme();
     const isStorageEnabled = options?.storage !== false;
+    const storageKey = options?.storageKey || DEFAULT_STORAGE_KEY;
 
-    const storageKey = DEFAULT_STORAGE_KEY;
     const storage = useMemo(() => {
       if (!isStorageEnabled) return null;
+      if (options?.storageInstance) {
+        return options.storageInstance;
+      }
       try {
-        const { MMKV } = require('react-native-mmkv');
-        return new MMKV(); // ✅ Created once per component mount
-      } catch (err) {
+        const mmkvModule = require('react-native-mmkv');
+
+        // v4 Nitro Modules support
+        if (typeof mmkvModule.createMMKV === 'function') {
+          return mmkvModule.createMMKV();
+        }
+
+        // fallback to v3
+        if (typeof mmkvModule.MMKV === 'function') {
+          return new mmkvModule.MMKV();
+        }
+      } catch (err: any) {
         if (__DEV__) {
-          console.log(
-            '[theme-csx] MMKV not found – enable storage only if MMKV is installed.'
-          );
-          // Custom error message (formatted clearly)
-          const errorMessage = `
-        [theme-csx] MMKV Required but Not Installed
-        ==============================
-        You enabled theme persistence (storage: true), but 'react-native-mmkv' is missing.
+          throw new Error(`
+          🎨 [theme-csx] MMKV Error ❌
+          ==============================
+          You enabled theme persistence (storage: true), but 'react-native-mmkv' is missing or incompatible.
 
-        Solutions:
-        1. Install MMKV: yarn add react-native-mmkv
-        2. Disable storage: createAppTheme(config, { storage: false })
-        
-        Note: Storage is disabled by default
-      `.replace(/^\s+/gm, ''); // Remove indentation
+          Original error:
+          ${err}
 
-          // OPTION 1: Show ONLY in redbox
-          throw new Error(errorMessage);
+          Solutions:
+          1. If you use MMKV v4 (recommended): install both packages
+            npm install react-native-mmkv react-native-nitro-modules
+          2. If you use MMKV v3: install only MMKV
+            npm install react-native-mmkv
+          3. Or disable storage: createAppTheme(config, { storage: false })
+
+          Note:
+          - Storage is disabled by default.
+          - You can pass your own MMKV instance via the "storageInstance" option.
+          - You can also handle theme persistence externally, without using this library's built-in storage.
+`);
         }
         return null;
       }
@@ -177,7 +160,11 @@ export function createAppTheme<T extends RequiredThemeConfig>(
 
     const resetThemeMode = useCallback(() => {
       if (isStorageEnabled && storage) {
-        storage.delete(storageKey);
+        if ('remove' in storage) {
+          storage.remove(storageKey); // v4 mmkv
+        } else if ('delete' in storage) {
+          storage.delete(storageKey); // v3 mmkv
+        }
       }
       setModeState('system');
     }, [isStorageEnabled, storage, storageKey]);
@@ -323,6 +310,37 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     return StyleSheet.create(styleFn(config));
   };
 
+  const resolveColor = (color: DynamicColorValue | string): string => {
+    try {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const { colorMode } = useTheme();
+
+      if (typeof color === 'string') return color;
+
+      if (isDynamicColorObject(color)) {
+        return colorMode === 'dark'
+          ? (color.dynamic.dark as string)
+          : (color.dynamic.light as string);
+      }
+
+      return '#FFFFFF';
+    } catch (error: any) {
+      // Detect "called outside React" situations
+      const isReactRuntimeError =
+        error?.message?.includes('Invalid hook call') ||
+        error?.message?.includes('Cannot read property') ||
+        error?.message?.includes('runtime not ready');
+
+      if (isReactRuntimeError) {
+        throw new Error(
+          `[theme-csx] ❌ resolveColor() cannot be used outside a React function component.`
+        );
+      }
+      // Re-throw any other unexpected errors
+      throw error;
+    }
+  };
+
   return {
     AppThemeProvider,
     useTheme,
@@ -333,46 +351,10 @@ export function createAppTheme<T extends RequiredThemeConfig>(
     useCycleThemeMode,
     createThemedStyles,
     createStaticStyles,
+    resolveColor,
     types: null as unknown as {
       Theme: Theme;
       ThemeMode: ThemeMode;
     },
   };
-}
-
-// Updated validation helper for the new approach
-function validateThemeConfig<T extends RequiredThemeConfig>(config: T) {
-  if (
-    !config.colors ||
-    typeof config.colors !== 'object' ||
-    Array.isArray(config.colors)
-  ) {
-    throw new Error("[theme-csx] Theme config must include a 'colors' object.");
-  }
-
-  if (!config.colors?.light) {
-    throw new Error(
-      "[theme-csx] Theme colors object must include 'light' colors"
-    );
-  }
-
-  // Skip validation if dark theme is not provided
-  if (!config.colors.dark) {
-    return;
-  }
-
-  // validate that dark colors (if present) only use keys from light
-  if (config.colors.dark) {
-    const lightKeys = Object.keys(config.colors.light);
-    const darkKeys = Object.keys(config.colors.dark);
-
-    const invalidDarkKeys = darkKeys.filter((key) => !lightKeys.includes(key));
-
-    if (invalidDarkKeys.length > 0) {
-      throw new Error(
-        `[theme-csx] Dark theme contains keys not present in light theme: ${invalidDarkKeys.join(', ')}\n` +
-          'These keys will be ignored. All dark theme colors should be overrides of light theme colors.'
-      );
-    }
-  }
 }

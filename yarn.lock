@@ -11577,6 +11577,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-mmkv@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "react-native-mmkv@npm:4.0.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-nitro-modules: "*"
+  checksum: 2e81aeb3a8ee559b145e78c05ea521b81147919fa2c417a51c04792b239d031f993a6af2077b9ebf03d6f4d261e17472543d11a3df0241452b25b3b9f3b58811
+  languageName: node
+  linkType: hard
+
 "react-native-monorepo-config@npm:^0.1.8":
   version: 0.1.8
   resolution: "react-native-monorepo-config@npm:0.1.8"
@@ -11584,6 +11595,16 @@ __metadata:
     escape-string-regexp: ^5.0.0
     fast-glob: ^3.3.3
   checksum: 3c9abfd2dcd7d4da0d5d8d59f1e997f68283a6dc04935c310fece2a6ab62045e2b19f976d27894243f1cba6d9b9f1c3771e9f1428cd7cb0f7e00ed9c1e7251a5
+  languageName: node
+  linkType: hard
+
+"react-native-nitro-modules@npm:^0.31.4":
+  version: 0.31.4
+  resolution: "react-native-nitro-modules@npm:0.31.4"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 9d251ec788eafb5c66033a1f376e2a8f9dfc8962a22e8511f6451bc50bf324549fd4e5113ee5bed59a993c0afc3288e8722d854239a33c00faae26848a211fde
   languageName: node
   linkType: hard
 
@@ -13123,7 +13144,8 @@ __metadata:
     react-dom: 19.0.0
     react-native: 0.79.2
     react-native-builder-bob: ^0.40.10
-    react-native-mmkv: ^3.2.0
+    react-native-mmkv: ^4.0.0
+    react-native-nitro-modules: ^0.31.4
     react-native-web: ~0.20.0
   languageName: unknown
   linkType: soft
